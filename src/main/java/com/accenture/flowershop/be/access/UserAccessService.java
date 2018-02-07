@@ -10,21 +10,19 @@ import java.util.Map;
 
 public class UserAccessService {
     private static final Logger LOG = LoggerFactory.getLogger(UserAccessService.class);
+
     public UserAccessService() {
         LOG.debug("UserAccessService bean created");
         fakeDB = new HashMap<>();
         populateUsers();
     }
-//    public boolean doesThisUserExist(User user) {
-//        return false;
-//    }
 
-    public User getUserFromDB(String name, String password) {
-        return fakeDB.get(name.trim() + " " + password.trim());
+    public User getUserFromDB(String login, String password) {
+        return fakeDB.get(login.trim());
     }
 
     public User putUserIntoDB(String login, String password, String name) {
-        if(fakeDB.containsKey(login)) return null;
+        if (fakeDB.containsKey(login)) return null;
         User user = new User();
         user.setName(name);
         user.setAdmin(false);
@@ -32,18 +30,18 @@ public class UserAccessService {
         user.setDiscount(3);
         user.setLogin(login);
         user.setPassword(password);
-        fakeDB.put(login.trim() + " " + password.trim(), user);
+        fakeDB.put(login.trim(), user);
         return user;
     }
 
-    private void populateUsers(){
+    private void populateUsers() {
         User admin = new User();
         admin.setAdmin(true);
         admin.setLogin("admin");
-        admin.setName("John");
+        admin.setName("Admin");
         admin.setPassword("admin123");
         admin.setBalance(new BigDecimal("2000"));
-        fakeDB.put(admin.getLogin() + " " + admin.getPassword(), admin);
+        fakeDB.put(admin.getLogin(), admin);
 
         User pavel = new User();
         pavel.setAdmin(false);
@@ -51,7 +49,7 @@ public class UserAccessService {
         pavel.setName("Pavel");
         pavel.setPassword("123");
         pavel.setBalance(new BigDecimal("2000000"));
-        fakeDB.put(pavel.getLogin() + " " + pavel.getPassword(), pavel);
+        fakeDB.put(pavel.getLogin(), pavel);
     }
 
     private Map<String, User> fakeDB;
