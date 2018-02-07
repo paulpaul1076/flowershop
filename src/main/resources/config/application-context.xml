@@ -42,7 +42,7 @@
 
         <!--<property name="locations" value="dbscripts"/>-->
         <property name="baselineOnMigrate" value="false"/>
-        <property name="schemas" value="my_app"/>
+        <!--<property name="schemas" value="my_app"/>-->
         <property name="outOfOrder" value="true"/>
         <property name="sqlMigrationPrefix" value="v"/>
         <property name="sqlMigrationSeparator" value="__"/>

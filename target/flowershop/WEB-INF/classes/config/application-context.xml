@@ -25,6 +25,7 @@
 
     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/flowerShopDS"/>
 
+    <!--do I need this?????-->
     <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver" />
         <property name="url" value="jdbc:h2:tcp://localhost/~/test" />
@@ -36,12 +37,12 @@
     <bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate">
         <property name="dataSource" ref="dataSource"/>   <!-- reference to datasource bean-->
         <property name="locations">
-            <list><value>dbscripts</value></list>
+            <list><value>dbscripts</value></list> <!--it used to say <array> instead of <list> here -->
         </property>
 
         <!--<property name="locations" value="dbscripts"/>-->
         <property name="baselineOnMigrate" value="false"/>
-        <property name="schemas" value="my_app"/>
+        <!--<property name="schemas" value="my_app"/>-->
         <property name="outOfOrder" value="true"/>
         <property name="sqlMigrationPrefix" value="v"/>
         <property name="sqlMigrationSeparator" value="__"/>
@@ -57,7 +58,7 @@
         </property>
         <property name="jpaVendorAdapter">
         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-            <property name="database" value="ORACLE" />
+             <property name="database" value="ORACLE" />
              <property name="generateDdl" value="false"/>
              <property name="showSql" value="true"/>
          </bean>

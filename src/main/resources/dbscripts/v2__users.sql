@@ -1,4 +1,4 @@
-use flowershop;
+--use flowershop;
 
 create table Users
 (
