@@ -1,15 +1,43 @@
 package com.accenture.flowershop.be.entity.user;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
-//@Entity
+@Entity
+@NamedQueries({
+@NamedQuery(name="loginUser", query = "select id," +
+        " isAdmin," +
+        " login," +
+        " password," +
+        " balance," +
+        " distcount," +
+        " name from Users where login = :login and password=:password"),
+@NamedQuery(name="registerUser",
+        query = "insert into Users(login, password, discount) " +
+                "values(:login, :password, :discount)")})
 public class User {
 
+    @Id
+    @Column(name = "id")
+    private long id;
+
+    @Column(name = "isAdmin")
     private boolean isAdmin;
+
+    @Id
+    @Column(name = "login")
     private String login;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "balance")
     private BigDecimal balance;
+
+    @Column(name = "discount")
     private int discount;
+
+    @Column(name = "name")
     private String name;
 
     public String getName() {

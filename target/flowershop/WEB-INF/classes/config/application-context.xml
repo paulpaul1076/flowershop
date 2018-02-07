@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-      http://www.springframework.org/schema/beans/spring-beans.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+       http://www.springframework.org/schema/jee
+       http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
 
     <bean id="userBusinessService" class="com.accenture.flowershop.be.business.user.UserBusinessServiceImpl">
         <constructor-arg ref="dao" />
@@ -10,5 +16,59 @@
 
     <bean id="dao" class="com.accenture.flowershop.be.access.UserAccessService">
     </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" >
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <tx:annotation-driven/>
+
+    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/flowerShopDS"/>
+
+    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver" />
+        <property name="url" value="jdbc:h2:tcp://localhost/~/test" />
+        <property name="username" value="sa" />
+        <property name="password" value="" />
+    </bean>
+
+    <!-- flyway stuff-->
+    <bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate">
+        <property name="dataSource" ref="dataSource"/>   <!-- reference to datasource bean-->
+        <property name="locations">
+            <list><value>dbscripts</value></list>
+        </property>
+
+        <!--<property name="locations" value="dbscripts"/>-->
+        <property name="baselineOnMigrate" value="false"/>
+        <property name="schemas" value="my_app"/>
+        <property name="outOfOrder" value="true"/>
+        <property name="sqlMigrationPrefix" value="v"/>
+        <property name="sqlMigrationSeparator" value="__"/>
+        <property name="placeholderPrefix" value="@{"/>
+        <property name="placeholderSuffix" value="}"/>
+    </bean>
+
+    <!-- entityManager stuff -->
+    <bean id="entityManagerFactory" 	class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" 	depends-on="flyway">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list><value>com.accenture.flowershop.entity.*</value></list>
+        </property>
+        <property name="jpaVendorAdapter">
+        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+            <property name="database" value="ORACLE" />
+             <property name="generateDdl" value="false"/>
+             <property name="showSql" value="true"/>
+         </bean>
+        </property>
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+	<prop key="hibernate.show_sql">true</prop>
+</props></property></bean>
 
 </beans>

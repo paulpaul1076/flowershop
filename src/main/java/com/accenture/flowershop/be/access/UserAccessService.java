@@ -4,11 +4,18 @@ import com.accenture.flowershop.be.entity.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class UserAccessService {
+    @PersistenceContext
+    private EntityManager entityManager;
+
     private static final Logger LOG = LoggerFactory.getLogger(UserAccessService.class);
 
     public UserAccessService() {
@@ -18,11 +25,21 @@ public class UserAccessService {
     }
 
     public User getUserFromDB(String login, String password) {
-        return fakeDB.get(login.trim());
+        //old begin
+        //return fakeDB.get(login.trim());
+        //old end
+        TypedQuery<User> query = entityManager.createQuery("findUsersByLogin", User.class);
+        query.setParameter("login", "admin");
+        // I guess this is better than getSingleResult()?
+        List<User> list = query.getResultList();
+        if(list.size() != 0) return list.get(0);
+        return null;
     }
 
+    // FIXME: 07.02.2018 add logic to retrieve users from a database
     public User putUserIntoDB(String login, String password, String name) {
-        if (fakeDB.containsKey(login)) return null;
+        //old begin
+        /*if (fakeDB.containsKey(login)) return null;
         User user = new User();
         user.setName(name);
         user.setAdmin(false);
@@ -31,7 +48,10 @@ public class UserAccessService {
         user.setLogin(login);
         user.setPassword(password);
         fakeDB.put(login.trim(), user);
-        return user;
+        return user;*/
+        //old end
+        //if(getUserFromDB(login))
+        return null; // broken
     }
 
     private void populateUsers() {
