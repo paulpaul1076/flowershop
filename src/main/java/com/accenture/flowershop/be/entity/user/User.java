@@ -4,6 +4,32 @@ import java.math.BigDecimal;
 
 //@Entity
 public class User {
+
+    private boolean isAdmin;
+    private String login;
+    private String password;
+    private BigDecimal balance;
+    private int discount;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+
     public boolean isAdmin() {
         return isAdmin;
     }
@@ -12,7 +38,6 @@ public class User {
         isAdmin = admin;
     }
 
-    private boolean isAdmin;
 
     public String getLogin() {
         return login;
@@ -22,7 +47,6 @@ public class User {
         this.login = login;
     }
 
-    private String login;
 
     public String getPassword() {
         return password;
@@ -32,7 +56,6 @@ public class User {
         this.password = password;
     }
 
-    private String password;
 
     public BigDecimal getBalance() {
         return balance;
@@ -42,5 +65,5 @@ public class User {
         this.balance = balance;
     }
 
-    private BigDecimal balance;
+
 }

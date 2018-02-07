@@ -4,11 +4,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userService" class="com.accenture.flowershop.be.business.user.UserBusinessServiceImpl">
+    <bean id="userBusinessService" class="com.accenture.flowershop.be.business.user.UserBusinessServiceImpl">
         <constructor-arg ref="dao" />
     </bean>
 
-    <bean id="dao" class="com.accenture.flowershop.be.access.UserDAO">
+    <bean id="dao" class="com.accenture.flowershop.be.access.UserAccessService">
     </bean>
 
 </beans>

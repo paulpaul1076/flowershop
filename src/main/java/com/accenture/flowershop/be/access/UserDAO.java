@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 public class UserDAO {
     private static final Logger LOG = LoggerFactory.getLogger(UserDAO.class);
     public UserDAO() {
