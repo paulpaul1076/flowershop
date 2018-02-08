@@ -1,12 +1,10 @@
 package com.accenture.flowershop.be.access;
 
-import com.accenture.flowershop.be.entity.user.User;
+import com.accenture.flowershop.be.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -16,21 +14,19 @@ public class UserAccessService {
     @PersistenceContext
     private EntityManager entityManager;
 
+    //private EntityManagerFactory factory;
+
     private static final Logger LOG = LoggerFactory.getLogger(UserAccessService.class);
 
     public UserAccessService() {
+        LOG.debug("Entity manager = {}", entityManager);
         LOG.debug("UserAccessService bean created");
-        fakeDB = new HashMap<>();
-        populateUsers();
     }
 
     public User getUserFromDB(String login, String password) {
-        //old begin
-        //return fakeDB.get(login.trim());
-        //old end
-        TypedQuery<User> query = entityManager.createQuery("findUsersByLogin", User.class);
-        query.setParameter("login", "admin");
-        // I guess this is better than getSingleResult()?
+        TypedQuery<User> query = entityManager.createNamedQuery("loginUser", User.class);
+        query.setParameter("login", login);
+        query.setParameter("password", password);
         List<User> list = query.getResultList();
         if(list.size() != 0) return list.get(0);
         return null;
@@ -51,6 +47,16 @@ public class UserAccessService {
         return user;*/
         //old end
         //if(getUserFromDB(login))
+        //old end
+        User user = new User();
+        user.setName(name);
+        user.setAdmin(false);
+        user.setBalance(new BigDecimal("2000"));
+        user.setDiscount(3);
+        user.setLogin(login);
+        user.setPassword(password);
+        entityManager.persist(user);
+        entityManager.flush();
         return null; // broken
     }
 

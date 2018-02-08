@@ -40,7 +40,7 @@
     <servlet-name>loginServlet</servlet-name>
     <servlet-class>com.accenture.flowershop.fe.servlets.LoginServlet</servlet-class>
     <init-param>
-      <param-name>com.accenture.flowershop.be.business.user.UserBusinessServiceImpl</param-name>
+      <param-name>com.accenture.flowershop.be.business.UserBusinessServiceImpl</param-name>
       <param-value>userBusinessService</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
@@ -55,7 +55,7 @@
     <servlet-name>registerServlet</servlet-name>
     <servlet-class>com.accenture.flowershop.fe.servlets.RegisterServlet</servlet-class>
     <init-param>
-      <param-name>com.accenture.flowershop.be.business.user.UserBusinessServiceImpl</param-name>
+      <param-name>com.accenture.flowershop.be.business.UserBusinessServiceImpl</param-name>
       <param-value>userBusinessService</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
@@ -70,7 +70,7 @@
         <servlet-name>logoutServlet</servlet-name>
         <servlet-class>com.accenture.flowershop.fe.servlets.RegisterServlet</servlet-class>
         <init-param>
-            <param-name>com.accenture.flowershop.be.business.user.UserBusinessServiceImpl</param-name>
+            <param-name>com.accenture.flowershop.be.business.UserBusinessServiceImpl</param-name>
             <param-value>userBusinessService</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>

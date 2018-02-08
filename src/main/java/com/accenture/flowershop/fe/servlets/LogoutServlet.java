@@ -1,9 +1,7 @@
 package com.accenture.flowershop.fe.servlets;
 
-import com.accenture.flowershop.be.business.user.UserBusinessServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

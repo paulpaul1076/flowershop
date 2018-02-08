@@ -1,7 +1,6 @@
 package com.accenture.flowershop.fe.servlets;
 
-import com.accenture.flowershop.be.business.user.UserBusinessServiceImpl;
-import com.accenture.flowershop.be.entity.user.User;
+import com.accenture.flowershop.be.business.UserBusinessServiceImpl;
 import com.accenture.flowershop.fe.dto.UserDTO;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;

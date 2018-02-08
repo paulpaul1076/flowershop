@@ -1,10 +1,10 @@
-C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\business\user\UserBusinessServiceImpl.java
+C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\business\UserBusinessService.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\dto\UserDTO.java
-C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\business\user\UserBusinessService.java
-C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\entity\user\User.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\LogoutServlet.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\UserLoginServlet.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\LoginServlet.java
+C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\business\UserBusinessServiceImpl.java
+C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\entity\User.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\RegisterServlet.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\access\UserAccessService.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\FlowerShopCatalogServlet.java

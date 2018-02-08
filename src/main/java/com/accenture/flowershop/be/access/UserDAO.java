@@ -1,10 +1,9 @@
 package com.accenture.flowershop.be.access;
 
-import com.accenture.flowershop.be.entity.user.User;
+import com.accenture.flowershop.be.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;

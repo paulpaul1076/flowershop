@@ -1,7 +1,7 @@
 <%@ include file="index.jsp"%>
        <hr/>
 
-       <h3>Login Form</h3>
+       <h3>Register Form</h3>
        <br/>
        <form action="registerServlet" method="post">
            Login:<input type="text" name="login"/><br/><br/>

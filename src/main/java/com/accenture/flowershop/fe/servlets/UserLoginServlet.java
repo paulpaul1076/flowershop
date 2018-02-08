@@ -1,6 +1,6 @@
 package com.accenture.flowershop.fe.servlets;
 
-import com.accenture.flowershop.be.entity.user.User;
+import com.accenture.flowershop.be.entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
