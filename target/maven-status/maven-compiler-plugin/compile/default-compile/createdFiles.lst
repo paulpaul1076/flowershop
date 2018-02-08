@@ -3,7 +3,6 @@ com\accenture\flowershop\fe\dto\UserDTO.class
 com\accenture\flowershop\be\access\UserAccessService.class
 com\accenture\flowershop\be\entity\User.class
 com\accenture\flowershop\fe\servlets\LogoutServlet.class
-com\accenture\flowershop\be\access\UserDAO.class
 com\accenture\flowershop\be\business\UserBusinessService.class
 com\accenture\flowershop\fe\servlets\FlowersServlet.class
 com\accenture\flowershop\be\business\UserBusinessServiceImpl.class

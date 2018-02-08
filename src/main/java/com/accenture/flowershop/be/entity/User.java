@@ -5,14 +5,20 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "Users")
-@NamedQuery(name = "loginUser", query = "Select u from User u where u.login = :login and u.password = :password")
+@NamedQueries
+({
+    @NamedQuery(name = "getUserFromDB", query = "Select u from User u where u.login = :login and u.password = :password"),
+    @NamedQuery(name = "isLoginInDB", query = "Select u from User u where u.login = :login")
+})
 public class User {
 
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+
+    private Boolean isAdmin = false; // default value
+
     @Id
-    private Long id;
-
-    private Boolean isAdmin;
-
     private String login;
 
     private String password;
@@ -36,17 +42,13 @@ public class User {
         return discount;
     }
 
-    public void setDiscount(int discount) {
-        this.discount = discount;
-    }
+//    public void setDiscount(int discount) {
+//        this.discount = discount;
+//    }
 
 
     public boolean isAdmin() {
         return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
     }
 
 
@@ -72,7 +74,7 @@ public class User {
         return balance;
     }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
+//    public void setBalance(BigDecimal balance) {
+//        this.balance = balance;
+//    }
 }

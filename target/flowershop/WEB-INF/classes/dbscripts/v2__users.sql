@@ -1,12 +1,10 @@
-create table Users
+create table Users -- default values are specified in source code
 (
-    id bigint not null identity(0, 1),
-    isAdmin boolean not null default false,
-    login varchar(20) not null,
+	login varchar(20) not null,
+	name varchar(20) not null,
+    isAdmin boolean not null,
     password varchar(20) not null,
-    balance decimal(10,2) not null default 2000,
+    balance decimal(10,2) not null,
     discount int not null,
-    name varchar(20) not null
-
-
+	constraint PK_Users primary key(login)
 );
