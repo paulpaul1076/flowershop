@@ -1,8 +1,15 @@
 package com.accenture.flowershop.be.business;
 
-import com.accenture.flowershop.fe.dto.UserDTO;
+import com.accenture.flowershop.be.entity.Flower;
+import com.accenture.flowershop.be.entity.User;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public interface UserBusinessService {
-    UserDTO login(String user, String password);
-    UserDTO register(String user, String password, String address);
+    User login(String user, String password);
+    boolean register(User user);
+    List<Flower> getAllFlowers();
+    List<Flower> getFlowersWithPriceBounds(BigDecimal from, BigDecimal to);
+    List<Flower> getFlowersByName(String substring);
 }

@@ -7,14 +7,13 @@ import java.math.BigDecimal;
 @Table(name = "Users")
 @NamedQueries
 ({
-    @NamedQuery(name = "getUserFromDB", query = "Select u from User u where u.login = :login and u.password = :password"),
-    @NamedQuery(name = "isLoginInDB", query = "Select u from User u where u.login = :login")
+    @NamedQuery(name = "getUser", query = "Select u from User u where u.login = :login and u.password = :password"),
+    @NamedQuery(name = "doesLoginExist", query = "Select u from User u where u.login = :login")
 })
 public class User {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id;
+    private String address;
+    private String phone;
 
     private Boolean isAdmin = false; // default value
 
@@ -25,7 +24,7 @@ public class User {
 
     private BigDecimal balance = new BigDecimal("2000"); // default value
 
-    private int discount = 3; // default value
+    private Integer discount = 3; // default value
 
     private String name;
 
@@ -37,20 +36,14 @@ public class User {
         this.name = name;
     }
 
-
     public int getDiscount() {
         return discount;
     }
-
-//    public void setDiscount(int discount) {
-//        this.discount = discount;
-//    }
 
 
     public boolean isAdmin() {
         return isAdmin;
     }
-
 
     public String getLogin() {
         return login;
@@ -59,7 +52,6 @@ public class User {
     public void setLogin(String login) {
         this.login = login;
     }
-
 
     public String getPassword() {
         return password;
@@ -74,7 +66,25 @@ public class User {
         return balance;
     }
 
-//    public void setBalance(BigDecimal balance) {
-//        this.balance = balance;
-//    }
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("address = %s, phone = %s, isAdmin = %b, login = %s, password = %s, balance = %s, discount = %d, name = %s",
+                address, phone, isAdmin, login, password, balance, discount, name);
+    }
 }

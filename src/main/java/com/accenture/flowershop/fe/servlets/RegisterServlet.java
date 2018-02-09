@@ -1,7 +1,10 @@
 package com.accenture.flowershop.fe.servlets;
 
-import com.accenture.flowershop.be.business.UserBusinessServiceImpl;
+import com.accenture.flowershop.be.business.UserBusinessService;
+import com.accenture.flowershop.be.entity.User;
 import com.accenture.flowershop.fe.dto.UserDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -16,7 +19,8 @@ import java.io.IOException;
 @WebServlet("/registerServlet")
 public class RegisterServlet extends HttpServlet {
     @Autowired
-    private UserBusinessServiceImpl userBusinessService;
+    private UserBusinessService userBusinessService;
+    private Logger log = LoggerFactory.getLogger(RegisterServlet.class);
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -26,11 +30,20 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDTO user = userBusinessService.register(req.getParameter("login"), req.getParameter("password"), req.getParameter("name"));
-        if(user != null) {
+        User user = new User();
+        user.setName(req.getParameter("name"));
+        user.setPassword(req.getParameter("password"));
+        user.setLogin(req.getParameter("login"));
+        user.setAddress(req.getParameter("address"));
+        user.setPhone(req.getParameter("phone"));
+        boolean success = userBusinessService.register(user);
+
+        log.debug(user.toString());
+
+        if(success) {
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect("invalidLoginPage.jsp");
+            resp.sendRedirect("failedRegistrationError.jsp");
         }
     }
 

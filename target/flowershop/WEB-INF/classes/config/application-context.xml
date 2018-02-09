@@ -17,8 +17,7 @@
         <constructor-arg ref="dao" />
     </bean>
 
-    <bean id="dao" class="com.accenture.flowershop.be.access.UserAccessService">
-        <!--<constructor-arg ref="transactionManager"/>-->
+    <bean id="dao" class="com.accenture.flowershop.be.access.UserAccessServiceImpl">
     </bean>
 
     <!--<jee:jndi-lookup id="myEmf" jndi-name="persistence/myPersistenceUnit"/>-->
@@ -89,4 +88,11 @@
     <!--<bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">-->
         <!--<property name="entityManagerFactory" ref="entityManagerFactory"/>-->
     <!--</bean>-->
+
+    <!--<bean id = "XMLConverter" class="com.accenture.flowershop.be.xml.XMLConverter">-->
+        <!--<property name="marshaller" ref="castorMarshaller"/>-->
+        <!--<property name="unmarshaller" ref="castorMarshaller"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller"/>-->
 </beans>

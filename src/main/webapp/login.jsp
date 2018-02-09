@@ -1,6 +1,3 @@
-<%@ include file="index.jsp"%>
-<hr/>
-
 <h3>Login Form</h3>
 <br/>
 <form action="loginServlet" method="get">

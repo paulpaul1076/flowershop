@@ -1,15 +1,27 @@
 package com.accenture.flowershop.fe.dto;
 
+import com.accenture.flowershop.be.entity.User;
+
 import java.math.BigDecimal;
 
-// only what's supposed to be displayed is here
 public class UserDTO {
     private String name;
     private int discount;
     private BigDecimal balance;
+    private String address;
+    private String phone;
+
+    public UserDTO(User user) {
+        this.name = user.getName();
+        this.discount = user.getDiscount();
+        this.balance = user.getBalance();
+        this.address = user.getAddress();
+        this.phone = user.getPhone();
+    }
     public String getName(){
         return name;
     }
+
 
     public int getDiscount() {
         return discount;
@@ -19,9 +31,11 @@ public class UserDTO {
         return balance;
     }
 
-    public UserDTO(String name, int discount, BigDecimal balance) {
-        this.name = name;
-        this.discount = discount;
-        this.balance = balance;
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 }

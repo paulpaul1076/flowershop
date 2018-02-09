@@ -1,10 +1,15 @@
 package com.accenture.flowershop.be.business;
 
 import com.accenture.flowershop.be.access.UserAccessService;
+import com.accenture.flowershop.be.access.UserAccessServiceImpl;
+import com.accenture.flowershop.be.entity.Flower;
 import com.accenture.flowershop.be.entity.User;
 import com.accenture.flowershop.fe.dto.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class UserBusinessServiceImpl implements UserBusinessService {
 
@@ -13,26 +18,35 @@ public class UserBusinessServiceImpl implements UserBusinessService {
     private static final Logger LOG = LoggerFactory.getLogger(UserBusinessServiceImpl.class);
 
     public UserBusinessServiceImpl(UserAccessService dao) {
-        LOG.debug("UserBusinessServiceImpl bean created");
         this.dao = dao;
     }
 
     @Override
-    public UserDTO login(String login, String password) {
-        User user = dao.getUserFromDB(login, password);
-        LOG.debug("The user is in businessservice!!!");
+    public User login(String login, String password) {
+        User user = dao.getUser(login, password);
         if(user != null) {
-            return new UserDTO(user.getName(), user.getDiscount(), user.getBalance());
+            return user;
         }
         return null;
     }
 
     @Override
-    public UserDTO register(String login, String password, String name) {
-        User user = dao.putUserIntoDB(login, password, name);
-        if(user != null) {
-            return new UserDTO(user.getName(), user.getDiscount(), user.getBalance());
-        }
-        return null;
+    public boolean register(User user) {
+        return dao.putUser(user);
+    }
+
+    @Override
+    public List<Flower> getAllFlowers() {
+        return dao.getAllFlowers();
+    }
+
+    @Override
+    public List<Flower> getFlowersWithPriceBounds(BigDecimal from, BigDecimal to) {
+        return dao.getFlowersWithPriceBounds(from, to);
+    }
+
+    @Override
+    public List<Flower> getFlowersByName(String substring) {
+        return dao.getFlowersByName(substring);
     }
 }

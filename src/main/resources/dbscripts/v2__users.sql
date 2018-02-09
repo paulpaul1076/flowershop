@@ -6,5 +6,7 @@ create table Users -- default values are specified in source code
     password varchar(20) not null,
     balance decimal(10,2) not null,
     discount int not null,
+    phone varchar(20) not null,
+    address varchar(100) not null,
 	constraint PK_Users primary key(login)
 );

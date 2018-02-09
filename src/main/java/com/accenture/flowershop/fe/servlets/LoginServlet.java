@@ -1,6 +1,8 @@
 package com.accenture.flowershop.fe.servlets;
 
-import com.accenture.flowershop.be.business.UserBusinessServiceImpl;
+import com.accenture.flowershop.be.business.UserBusinessService;
+import com.accenture.flowershop.be.entity.Flower;
+import com.accenture.flowershop.be.entity.User;
 import com.accenture.flowershop.fe.dto.UserDTO;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet{
@@ -22,38 +25,31 @@ public class LoginServlet extends HttpServlet{
     private static final Logger LOG = LoggerFactory.getLogger(LoginServlet.class);
 
     @Autowired
-    private UserBusinessServiceImpl userBusinessService;
+    private UserBusinessService userBusinessService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,config.getServletContext());
-        LOG.debug("userBusinessService = {}", userBusinessService);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOG.debug("In doPost");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOG.debug("In doGet");
-        LOG.debug("login = {}, password = {}", req.getParameter("login"), req.getParameter("password"));
-        UserDTO user = userBusinessService.login(req.getParameter("login"), req.getParameter("password"));
+        User user = userBusinessService.login(req.getParameter("login"), req.getParameter("password"));
+        List<Flower> allFlowers = userBusinessService.getAllFlowers();
+        LOG.debug("FLOWER COUNT = {}", allFlowers.size());
         if(user != null) {
             HttpSession session = req.getSession();
-            //session.setAttribute("currentSessionUser", user);
-            //session.setAttribute("name", user.getName());
-            //LOG.debug("");
-            req.setAttribute("money", user.getBalance());
-            req.setAttribute("discount", user.getDiscount());
-            req.setAttribute("name", user.getName());
-            // how to add attributes to response???
-            //resp.sendRedirect("mainpage.jsp");
+            session.setAttribute("flowerlist", allFlowers);
+            req.setAttribute("userdto", new UserDTO(user));
+            //req.setAttribute("flowerlist", allFlowers);
             req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
         } else {
-            resp.sendRedirect("invalidLoginPage.jsp");
+            resp.sendRedirect("invalidLoginError.jsp");
         }
     }
 }
