@@ -14,10 +14,24 @@
        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <bean id="userBusinessService" class="com.accenture.flowershop.be.business.UserBusinessServiceImpl">
-        <constructor-arg ref="dao" />
+        <constructor-arg ref="user_dao" />
     </bean>
 
-    <bean id="dao" class="com.accenture.flowershop.be.access.UserAccessServiceImpl">
+    <bean id="user_dao" class="com.accenture.flowershop.be.access.UserAccessServiceImpl">
+    </bean>
+
+    <bean id="flowerBusinessService" class="com.accenture.flowershop.be.business.FlowerBusinessServiceImpl">
+        <constructor-arg ref="flower_dao" />
+    </bean>
+
+    <bean id="flower_dao" class="com.accenture.flowershop.be.access.FlowerAccessServiceImpl">
+    </bean>
+
+    <bean id="orderBusinessService" class="com.accenture.flowershop.be.business.OrderBusinessServiceImpl">
+        <constructor-arg ref="order_dao" />
+    </bean>
+
+    <bean id="order_dao" class="com.accenture.flowershop.be.access.OrderAccessServiceImpl">
     </bean>
 
     <!--<jee:jndi-lookup id="myEmf" jndi-name="persistence/myPersistenceUnit"/>-->
@@ -84,15 +98,4 @@
             </props>
         </property>
     </bean>
-
-    <!--<bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">-->
-        <!--<property name="entityManagerFactory" ref="entityManagerFactory"/>-->
-    <!--</bean>-->
-
-    <!--<bean id = "XMLConverter" class="com.accenture.flowershop.be.xml.XMLConverter">-->
-        <!--<property name="marshaller" ref="castorMarshaller"/>-->
-        <!--<property name="unmarshaller" ref="castorMarshaller"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller"/>-->
 </beans>

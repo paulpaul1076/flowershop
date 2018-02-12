@@ -16,33 +16,16 @@
       org.springframework.web.context.ContextLoaderListener
     </listener-class>
   </listener>
-<!--
-  <servlet>
-    <servlet-name>FlowerShopCatalogServlet</servlet-name>
-    <jsp-file>/catalog.jsp</jsp-file>
-  </servlet>
 
-  <servlet-mapping>
-    <servlet-name>FlowerShopCatalogServlet</servlet-name>
-    <url-pattern>/catalog</url-pattern>
-  </servlet-mapping>
 
-  <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <jsp-file>/login.jsp</jsp-file>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/login</url-pattern>
-  </servlet-mapping>
--->
   <servlet>
     <servlet-name>loginServlet</servlet-name>
     <servlet-class>com.accenture.flowershop.fe.servlets.LoginServlet</servlet-class>
     <init-param>
       <param-name>com.accenture.flowershop.be.business.UserBusinessServiceImpl</param-name>
       <param-value>userBusinessService</param-value>
+      <param-name>com.accenture.flowershop.be.business.FlowerBusinessServiceImpl</param-name>
+      <param-name>flowerBusinessService</param-name>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -67,20 +50,78 @@
     <url-pattern>/registerServlet</url-pattern>
   </servlet-mappng>
 
+  <servlet>
+      <servlet-name>logoutServlet</servlet-name>
+      <servlet-class>com.accenture.flowershop.fe.servlets.RegisterServlet</servlet-class>
+      <init-param>
+          <param-name>com.accenture.flowershop.be.business.UserBusinessServiceImpl</param-name>
+          <param-value>userBusinessService</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mappng>
+      <servlet-name>logoutServlet</servlet-name>
+      <url-pattern>/logoutServlet</url-pattern>
+  </servlet-mappng>
+
+  <servlet>
+    <servlet-name>searchByNameServlet</servlet-name>
+    <servlet-class>com.accenture.flowershop.fe.servlets.SearchByNameServlet</servlet-class>
+    <init-param>
+      <param-name>com.accenture.flowershop.be.business.FlowerBusinessServiceImpl</param-name>
+      <param-value>flowerBusinessService</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mappng>
+    <servlet-name>searchByNameServlet</servlet-name>
+    <url-pattern>/searchByNameServlet</url-pattern>
+  </servlet-mappng>
+
+  <servlet>
+    <servlet-name>showAllFlowersServlet</servlet-name>
+    <servlet-class>com.accenture.flowershop.fe.servlets.ShowAllFlowersServlet</servlet-class>
+    <init-param>
+      <param-name>com.accenture.flowershop.be.business.FlowerBusinessServiceImpl</param-name>
+      <param-value>flowerBusinessService</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mappng>
+    <servlet-name>showAllFlowersServlet</servlet-name>
+    <url-pattern>/showAllFlowersServlet</url-pattern>
+  </servlet-mappng>
+
     <servlet>
-        <servlet-name>logoutServlet</servlet-name>
-        <servlet-class>com.accenture.flowershop.fe.servlets.RegisterServlet</servlet-class>
-        <init-param>
-            <param-name>com.accenture.flowershop.be.business.UserBusinessServiceImpl</param-name>
-            <param-value>userBusinessService</param-value>
-        </init-param>
+        <servlet-name>addToCartServlet</servlet-name>
+        <servlet-class>com.accenture.flowershop.fe.servlets.AddToCartServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mappng>
-        <servlet-name>logoutServlet</servlet-name>
-        <url-pattern>/logoutServlet</url-pattern>
+        <servlet-name>addToCartServlet</servlet-name>
+        <url-pattern>/addToCartServlet</url-pattern>
     </servlet-mappng>
+
+  <servlet>
+    <servlet-name>placeOrderServlet</servlet-name>
+    <servlet-class>com.accenture.flowershop.fe.servlets.PlaceOrderServlet</servlet-class>
+    <init-param>
+      <param-name>com.accenture.flowershop.be.business.OrderBusinessServiceImpl</param-name>
+      <param-value>orderBusinessService</param-value>
+      <param-name>com.accenture.flowershop.be.business.FlowerBusinessServiceImpl</param-name>
+      <param-value>flowerBusinessService</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mappng>
+    <servlet-name>placeOrderServlet</servlet-name>
+    <url-pattern>/placeOrderServlet</url-pattern>
+  </servlet-mappng>
 
   <resource-ref>
     <description>h2 datasource</description>

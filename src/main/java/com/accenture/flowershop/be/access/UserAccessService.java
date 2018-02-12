@@ -10,7 +10,4 @@ public interface UserAccessService {
     boolean putUser(User user);
     User getUser(String login, String password);
     boolean doesLoginExist(String login);
-    List<Flower> getAllFlowers();
-    List<Flower> getFlowersWithPriceBounds(BigDecimal from, BigDecimal to);
-    List<Flower> getFlowersByName(String substring);
 }

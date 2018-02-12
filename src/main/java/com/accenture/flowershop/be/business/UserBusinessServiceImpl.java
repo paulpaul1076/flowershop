@@ -35,18 +35,4 @@ public class UserBusinessServiceImpl implements UserBusinessService {
         return dao.putUser(user);
     }
 
-    @Override
-    public List<Flower> getAllFlowers() {
-        return dao.getAllFlowers();
-    }
-
-    @Override
-    public List<Flower> getFlowersWithPriceBounds(BigDecimal from, BigDecimal to) {
-        return dao.getFlowersWithPriceBounds(from, to);
-    }
-
-    @Override
-    public List<Flower> getFlowersByName(String substring) {
-        return dao.getFlowersByName(substring);
-    }
 }

@@ -14,9 +14,4 @@
               testWhileIdle="true"
               validationQuery="Select 1 From dual"
               maxWait="-1"/>
-<!--
-    <ResourceLink name="jdbc/flowerShopDS"
-                  global="jdbc/flowerShopDS"
-                  type="javax.sql.DataSource" />-->
-
 </Context>

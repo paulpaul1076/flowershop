@@ -11,17 +11,25 @@ public class UserDTO {
     private String address;
     private String phone;
 
+
+    private String login;
+
     public UserDTO(User user) {
+        this.login = user.getLogin();
         this.name = user.getName();
         this.discount = user.getDiscount();
         this.balance = user.getBalance();
         this.address = user.getAddress();
         this.phone = user.getPhone();
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
 
+    public String getLogin() {
+        return login;
+    }
 
     public int getDiscount() {
         return discount;

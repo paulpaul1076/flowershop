@@ -26,7 +26,7 @@ public class UserAccessServiceImpl implements UserAccessService{
         query.setParameter("login", login);
         query.setParameter("password", password);
         List<User> list = query.getResultList();
-        if(list.size() != 0) return list.get(0);
+        if(!list.isEmpty()) return list.get(0);
         return null;
     }
 
@@ -35,30 +35,6 @@ public class UserAccessServiceImpl implements UserAccessService{
         query.setParameter("login", login);
         List<User> list = query.getResultList();
         return !list.isEmpty();
-    }
-
-    @Override
-    public List<Flower> getAllFlowers() {
-        TypedQuery<Flower> query = entityManager.createNamedQuery("getAllFlowers", Flower.class);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Flower> getFlowersWithPriceBounds(BigDecimal from, BigDecimal to) {
-        if(from.compareTo(to) > 0) {
-            return null;
-        }
-        TypedQuery<Flower> query = entityManager.createNamedQuery("getFlowersWithPriceBounds", Flower.class);
-        query.setParameter("from", from);
-        query.setParameter("to", to);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Flower> getFlowersByName(String substring) {
-        TypedQuery<Flower> query = entityManager.createNamedQuery("getFlowersByName", Flower.class);
-        query.setParameter("substring", substring);
-        return query.getResultList();
     }
 
     // return false if such login is already registered, otherwise, newly created user
