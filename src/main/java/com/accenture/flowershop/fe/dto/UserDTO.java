@@ -39,6 +39,10 @@ public class UserDTO {
         return balance;
     }
 
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
     public String getAddress() {
         return address;
     }

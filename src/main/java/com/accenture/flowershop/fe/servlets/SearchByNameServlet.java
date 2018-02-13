@@ -42,7 +42,7 @@ public class SearchByNameServlet extends HttpServlet{
                 }
             }
         }
-        session.setAttribute("flowerlist", flowerlist);
-        req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
+        session.setAttribute("newflowerlist", flowerlist);
+        resp.sendRedirect("mainpage.jsp");
     }
 }

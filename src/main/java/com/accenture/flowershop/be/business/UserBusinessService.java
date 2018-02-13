@@ -9,4 +9,6 @@ import java.util.List;
 public interface UserBusinessService {
     User login(String user, String password);
     boolean register(User user);
+    void updateUser(User user);
+    User getUserByLogin(String login);
 }

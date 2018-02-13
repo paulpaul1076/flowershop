@@ -56,6 +56,7 @@ public class SearchInRangeServlet extends HttpServlet{
         if(a.compareTo(b) > 0) { // handle this error
             HttpSession session = req.getSession();
             session.setAttribute("flowerlist", new ArrayList<Flower>());
+            req.setAttribute("dontqueryflowers", 1);
             req.setAttribute("error", "You have entered a search query in which a > b, a must be <= b");
             req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
             return;
@@ -71,7 +72,7 @@ public class SearchInRangeServlet extends HttpServlet{
                 }
             }
         }
-        session.setAttribute("flowerlist", flowerlist);
-        req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
+        session.setAttribute("newflowerlist", flowerlist);
+        resp.sendRedirect("mainpage.jsp");
     }
 }

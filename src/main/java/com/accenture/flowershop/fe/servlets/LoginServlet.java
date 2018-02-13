@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet("/loginServlet")
-public class LoginServlet extends HttpServlet{
+public class LoginServlet extends HttpServlet {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoginServlet.class);
 
@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet{
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,config.getServletContext());
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
     }
 
     @Override
@@ -52,18 +52,32 @@ public class LoginServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = userBusinessService.login(req.getParameter("login"), req.getParameter("password"));
-        List<Flower> allFlowers = flowerBusinessService.getAllFlowers();
+        List<Flower> allFlowers = new ArrayList<>();//flowerBusinessService.getAllFlowers();
         List<CartFlower> cartlist = new ArrayList<>();
-        List<Order> orderlist = orderBusinessService.getAllCustomersOrders(user.getLogin());
-        if(user != null) {
+        if (user != null) {
             HttpSession session = req.getSession();
+            if (user.getLogin().equals("admin")) {
+                List<Order> allOrders = new ArrayList<>(); // redo in jsp
+                session.setAttribute("allOrders", allOrders);
+                session.setAttribute("orderBusinessService", orderBusinessService);
+                System.out.println("All orders : ");
+                for (Order o : allOrders) {
+                    System.out.println(o);
+                }
+                resp.sendRedirect("admin.jsp");
+                return;
+            }
+            List<Order> orderlist = new ArrayList<>();//orderBusinessService.getAllCustomersOrders(user.getLogin());
+            session.setAttribute("flowerBusinessService", flowerBusinessService);
+            session.setAttribute("orderBusinessService", orderBusinessService);
             session.setAttribute("flowerlist", allFlowers);
             session.setAttribute("cartlist", cartlist);
             session.setAttribute("orderlist", orderlist);
             session.setAttribute("userdto", new UserDTO(user));
             session.setAttribute("total", new BigDecimal("0").setScale(2));
             session.setAttribute("discount", user.getDiscount());
-            req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
+
+            resp.sendRedirect("mainpage.jsp");
         } else {
             resp.sendRedirect("invalidLoginError.jsp");
         }

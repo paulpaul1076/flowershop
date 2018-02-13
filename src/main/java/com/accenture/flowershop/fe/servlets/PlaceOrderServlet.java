@@ -38,25 +38,11 @@ public class PlaceOrderServlet extends HttpServlet {
         HttpSession session = req.getSession();
         UserDTO userdto = (UserDTO)session.getAttribute("userdto");
         BigDecimal total = (BigDecimal)session.getAttribute("total");
-        System.out.println("Userdto = " + userdto);
-        Order order = new Order(userdto.getLogin(), total);
-        System.out.println("order business service = " + orderBusinessService);
-        orderBusinessService.createOrder(order);
-        List<Flower> flowerlist = flowerBusinessService.getAllFlowers();
         List<CartFlower> cartlist = (List<CartFlower>)session.getAttribute("cartlist");
-        for(CartFlower cartFlower : cartlist) {
-            for(Flower flower : flowerlist) {
-                if(cartFlower.getName().equals(flower.getName())) {
-                    flower.setCount(flower.getCount() - cartFlower.getHowmany());
-                    flowerBusinessService.updateFlower(flower);
-                }
-            }
-        }
+        orderBusinessService.placeOrder(userdto.getLogin(), total, cartlist);
         cartlist.clear();
         BigDecimal newTotal = BigDecimal.valueOf(0);
         session.setAttribute("total", newTotal);
-        List<Order> orderlist = (List<Order>)session.getAttribute("orderlist");
-        orderlist.add(order);
         session.removeAttribute("placeOrderButton");
         resp.sendRedirect("mainpage.jsp");
     }

@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface OrderAccessService {
     List<Order> getAllCustomersOrders(String custlogin);
-    void putOrder(Order order);
+    Order putOrder(Order order);
+    Order getOrderById(Integer orderid);
+    List<Order> getAllOrdersSortedByDateAndStatus();
+
 }

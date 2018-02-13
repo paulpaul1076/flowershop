@@ -1,8 +1,12 @@
 package com.accenture.flowershop.fe.servlets;
 
+import com.accenture.flowershop.be.business.FlowerBusinessService;
 import com.accenture.flowershop.be.entity.Flower;
 import com.accenture.flowershop.fe.dto.CartFlower;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,11 +15,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @WebServlet("/addToCartServlet")
 public class AddToCartServlet extends HttpServlet {
+
+    @Autowired
+    private FlowerBusinessService flowerBusinessService;
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
@@ -34,7 +47,7 @@ public class AddToCartServlet extends HttpServlet {
         int howmany = Integer.parseInt(number);
 
         HttpSession session = req.getSession();
-        List<Flower> flowerlist = (List<Flower>)session.getAttribute("flowerlist");
+        List<Flower> flowerlist =  flowerBusinessService.getAllFlowers();
         List<CartFlower> cartlist = (List<CartFlower>)session.getAttribute("cartlist");
         int discount = (int)session.getAttribute("discount");
         CartFlower newFlower = new CartFlower();
@@ -51,7 +64,7 @@ public class AddToCartServlet extends HttpServlet {
                     req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
                     return;
                 }
-                f.setCount(howmanyLeftInStock - howmany);
+                f.setCount(howmanyLeftInStock - howmany); // this shouldnt be transactional
                 totalPriceForFlower = new BigDecimal(price)
                         .multiply(BigDecimal.valueOf(howmany))
                         .multiply(BigDecimal.valueOf((100.0 - discount)/100.0)).setScale(2);
@@ -74,15 +87,12 @@ public class AddToCartServlet extends HttpServlet {
             if(f.getName().equals(newFlower.getName())) {
                 f.setTotal(f.getTotal().add(newFlower.getTotal()));
                 f.setHowmany(f.getHowmany() + newFlower.getHowmany());
-                //req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
                 resp.sendRedirect("mainpage.jsp");
                 return;
             }
         }
 
         cartlist.add(newFlower);
-
-        //req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
         resp.sendRedirect("mainpage.jsp");
     }
 }

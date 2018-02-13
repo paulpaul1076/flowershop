@@ -31,7 +31,7 @@ public class UserAccessServiceImpl implements UserAccessService{
     }
 
     public boolean doesLoginExist(String login) {
-        TypedQuery<User> query = entityManager.createNamedQuery("doesLoginExist", User.class);
+        TypedQuery<User> query = entityManager.createNamedQuery("getUserByLogin", User.class);
         query.setParameter("login", login);
         List<User> list = query.getResultList();
         return !list.isEmpty();
@@ -43,8 +43,25 @@ public class UserAccessServiceImpl implements UserAccessService{
         if(doesLoginExist(user.getLogin())) {
             return false;
         }
-        entityManager.persist(user);
+        entityManager.persist(user); // sure that it's merge?
         //marshallingService.marshall(null,null);
         return true;
     }
+
+    @Transactional
+    @Override
+    public void updateUser(User user) {
+        entityManager.merge(user);
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+        TypedQuery<User> query = entityManager.createNamedQuery("getUserByLogin", User.class);
+        query.setParameter("login", login);
+        List<User> list = query.getResultList();
+        if(list.isEmpty()) return null;
+        return list.get(0);
+    }
+
+
 }

@@ -23,10 +23,25 @@ public class OrderAccessServiceImpl implements OrderAccessService {
 
     @Transactional
     @Override
-    public void putOrder(Order order) {
-        // would you ever need to check if such order exists?
-        // for now: no, and the return type is void
-        entityManager.persist(order);
+    public Order putOrder(Order order) {
+        return entityManager.merge(order);
     }
+
+    public Order getOrderById(Integer orderid) {
+        TypedQuery<Order> query = entityManager.createNamedQuery("getOrderById", Order.class);
+        query.setParameter("orderid", orderid);
+        List<Order> list = query.getResultList();
+        if(list.isEmpty()) return null;
+        return list.get(0);
+    }
+
+    @Override
+    public List<Order> getAllOrdersSortedByDateAndStatus() {
+        TypedQuery<Order> query = entityManager.createNamedQuery("getAllOrdersSortedByDateAndStatus", Order.class);
+        List<Order> list = query.getResultList();
+        return list;
+    }
+
+
 
 }

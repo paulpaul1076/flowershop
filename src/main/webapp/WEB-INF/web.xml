@@ -17,7 +17,6 @@
     </listener-class>
   </listener>
 
-
   <servlet>
     <servlet-name>loginServlet</servlet-name>
     <servlet-class>com.accenture.flowershop.fe.servlets.LoginServlet</servlet-class>
@@ -30,10 +29,6 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
-  <servlet-mappng>
-    <servlet-name>loginServlet</servlet-name>
-    <url-pattern>/loginServlet</url-pattern>
-  </servlet-mappng>
 
   <servlet>
     <servlet-name>registerServlet</servlet-name>
@@ -45,10 +40,6 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
-  <servlet-mappng>
-    <servlet-name>registerServlet</servlet-name>
-    <url-pattern>/registerServlet</url-pattern>
-  </servlet-mappng>
 
   <servlet>
       <servlet-name>logoutServlet</servlet-name>
@@ -60,10 +51,6 @@
       <load-on-startup>1</load-on-startup>
   </servlet>
 
-  <servlet-mappng>
-      <servlet-name>logoutServlet</servlet-name>
-      <url-pattern>/logoutServlet</url-pattern>
-  </servlet-mappng>
 
   <servlet>
     <servlet-name>searchByNameServlet</servlet-name>
@@ -75,10 +62,6 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
-  <servlet-mappng>
-    <servlet-name>searchByNameServlet</servlet-name>
-    <url-pattern>/searchByNameServlet</url-pattern>
-  </servlet-mappng>
 
   <servlet>
     <servlet-name>showAllFlowersServlet</servlet-name>
@@ -90,21 +73,16 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
-  <servlet-mappng>
-    <servlet-name>showAllFlowersServlet</servlet-name>
-    <url-pattern>/showAllFlowersServlet</url-pattern>
-  </servlet-mappng>
 
     <servlet>
         <servlet-name>addToCartServlet</servlet-name>
         <servlet-class>com.accenture.flowershop.fe.servlets.AddToCartServlet</servlet-class>
+          <init-param>
+            <param-name>com.accenture.flowershop.be.business.FlowerBusinessServiceImpl</param-name>
+            <param-value>flowerBusinessService</param-value>
+          </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
-    <servlet-mappng>
-        <servlet-name>addToCartServlet</servlet-name>
-        <url-pattern>/addToCartServlet</url-pattern>
-    </servlet-mappng>
 
   <servlet>
     <servlet-name>placeOrderServlet</servlet-name>
@@ -118,10 +96,38 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
-  <servlet-mappng>
-    <servlet-name>placeOrderServlet</servlet-name>
-    <url-pattern>/placeOrderServlet</url-pattern>
-  </servlet-mappng>
+  <servlet>
+    <servlet-name>payServlet</servlet-name>
+    <servlet-class>com.accenture.flowershop.fe.servlets.PayServlet</servlet-class>
+    <init-param>
+      <param-name>com.accenture.flowershop.be.business.OrderBusinessServiceImpl</param-name>
+      <param-value>orderBusinessService</param-value>
+      <param-name>com.accenture.flowershop.be.business.UserBusinessServiceImpl</param-name>
+      <param-value>userBusinessService</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet>
+    <servlet-name>closeServlet</servlet-name>
+    <servlet-class>com.accenture.flowershop.fe.servlets.PayServlet</servlet-class>
+    <init-param>
+      <param-name>com.accenture.flowershop.be.business.OrderBusinessServiceImpl</param-name>
+      <param-value>orderBusinessService</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+
+  <!--<filter>
+    <filter-name>sessionExpiredFilter</filter-name>
+    <filter-class>com.accenture.flowershop.fe.servlets.SessionExpiredFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>sessionExpiredFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>-->
 
   <resource-ref>
     <description>h2 datasource</description>

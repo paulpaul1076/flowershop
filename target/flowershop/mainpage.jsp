@@ -5,6 +5,12 @@
 <%@ page import="com.accenture.flowershop.be.entity.Flower"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.accenture.flowershop.be.entity.Order"%>
+<%@ page import="com.accenture.flowershop.be.business.OrderBusinessService"%>
+<%@ page import="com.accenture.flowershop.be.business.FlowerBusinessService"%>
+<%@ page import="com.accenture.flowershop.fe.dto.CartFlower"%>
+
+<!--if session expired redirect-->
+<!--<meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval};url=login.jsp">-->
 
 <%
     UserDTO user = (UserDTO)session.getAttribute("userdto");
@@ -15,6 +21,36 @@
     out.println("Address: " + user.getAddress() + "<br>");
     out.println("Phone: " + user.getPhone() + "<br>");
     out.println("<br><br>");
+
+    //update flowerlist
+    List<Flower> flowerlist = (List<Flower>)session.getAttribute("flowerlist");
+    if(session.getAttribute("newflowerlist") == null) {
+        FlowerBusinessService flowerBusinessService = (FlowerBusinessService)session.getAttribute("flowerBusinessService");
+        flowerlist.clear();
+        flowerlist.addAll(flowerBusinessService.getAllFlowers());
+    } else {
+        List<Flower> newflowerlist = (List<Flower>)session.getAttribute("newflowerlist");
+        flowerlist.clear();
+        flowerlist.addAll(newflowerlist);
+        session.removeAttribute("newflowerlist");
+    }
+
+    List<CartFlower> cartlist = (List<CartFlower>)session.getAttribute("cartlist");
+
+    for(Flower f : flowerlist) {
+        for(CartFlower cartF : cartlist) {
+            if(f.getName().equals(cartF.getName())) {
+                f.setCount(f.getCount() - cartF.getHowmany());
+            }
+        }
+    }
+
+    //update orderlist
+    List<Order> orderlist = (List<Order>)session.getAttribute("orderlist");
+    OrderBusinessService orderBusinessService = (OrderBusinessService)session.getAttribute("orderBusinessService");
+    orderlist.clear();
+    orderlist.addAll(orderBusinessService.getAllCustomersOrders(user.getLogin()));
+
 %>
 <style>
 table,th,td{
@@ -103,7 +139,6 @@ Placed orders:
         <td>Status(Paid?)</td>
     </tr>
      <%
-        List<Order> orderlist = (List<Order>)session.getAttribute("orderlist");
         for(int i = 0; i < orderlist.size(); ++i){
             Order o = orderlist.get(i);
         %>
@@ -111,8 +146,20 @@ Placed orders:
             <td><%out.println(o.getTotal());%></td>
             <td><%out.println(o.getCreatedate());%></td>
             <td><%out.println(o.getClosedate() == null ? "" : o.getClosedate());%></td>
-            <td><%if(!o.getStatus())
-            out.println("Unpaid <input type=\"submit\" value = \"Pay\">");%></td>
+            <td>
+            <%
+            if(o.getStatus().equals("created")) {
+                out.println(o.getStatus()
+                + "<form action=\"payServlet\" method=\"post\">"
+                + "<input id=\"orderid\" name=\"orderid\" type=\"hidden\" value=\"" + o.getOrderid() + "\">"
+                + "<input id=\"index\" name=\"index\" type=\"hidden\" value=\"" + i + "\">"
+                + "<input type=\"submit\" value = \"Pay\">"
+                + "</form>");
+            } else {
+                out.println(o.getStatus());
+            }
+            %>
+            </td>
          </tr>
         <%}
      %>

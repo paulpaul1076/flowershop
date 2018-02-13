@@ -29,7 +29,7 @@ public class ShowAllFlowersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Flower> flowerlist = flowerBusinessService.getAllFlowers();
+        /*List<Flower> flowerlist = flowerBusinessService.getAllFlowers();
         HttpSession session = req.getSession();
         List<CartFlower> cartlist = (List<CartFlower>)session.getAttribute("cartlist");
         for(Flower flower : flowerlist) {
@@ -39,7 +39,8 @@ public class ShowAllFlowersServlet extends HttpServlet {
                 }
             }
         }
-        session.setAttribute("flowerlist", flowerlist);
-        req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
+        session.setAttribute("newflowerlist", flowerlist);*/
+        //page loads all flowers by default
+        resp.sendRedirect("mainpage.jsp");
     }
 }

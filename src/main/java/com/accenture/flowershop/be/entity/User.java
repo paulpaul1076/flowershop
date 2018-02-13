@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @NamedQueries
 ({
     @NamedQuery(name = "getUser", query = "Select u from User u where u.login = :login and u.password = :password"),
-    @NamedQuery(name = "doesLoginExist", query = "Select u from User u where u.login = :login")
+    @NamedQuery(name = "getUserByLogin", query = "Select u from User u where u.login = :login"),
 })
 public class User {
 
@@ -64,6 +64,10 @@ public class User {
 
     public BigDecimal getBalance() {
         return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     public String getAddress() {

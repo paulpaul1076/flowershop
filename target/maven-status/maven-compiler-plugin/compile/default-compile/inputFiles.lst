@@ -1,6 +1,7 @@
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\access\OrderAccessServiceImpl.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\entity\Order.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\SearchByNameServlet.java
+C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\SessionExpiredFilter.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\LoginServlet.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\business\UserBusinessServiceImpl.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\access\UserAccessService.java
@@ -10,7 +11,7 @@ C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\f
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\xml\XMLConverter.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\access\UserAccessServiceImpl.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\PayServlet.java
-C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\RemoveFromCartServlet.java
+C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\CloseServlet.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\business\OrderBusinessService.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\dto\UserDTO.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\LogoutServlet.java

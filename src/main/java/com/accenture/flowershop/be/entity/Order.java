@@ -8,17 +8,19 @@ import java.sql.Date;
 @Table(name = "Orders")
 @NamedQueries
 ({
-    @NamedQuery(name = "getOrdersByLogin", query = "Select o from Order o where custlogin = :custlogin")
+    @NamedQuery(name = "getOrdersByLogin", query = "Select o from Order o where custlogin = :custlogin"),
+    @NamedQuery(name = "getOrderById", query = "Select o from Order o where orderid = :orderid"),
+    @NamedQuery(name = "getAllOrdersSortedByDateAndStatus", query = "Select o from Order o order by createdate, status")
 })
 public class Order {
     @Id
-    @GeneratedValue
-    private Integer orderid = 0; // default
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer orderid; // default
     private String custlogin;
     private BigDecimal total;
     private Date createdate = new Date(System.currentTimeMillis()); // default
     private Date closedate = null; // default
-    private Boolean status = false; // default
+    private String status = "created"; // default
 
     public Order(){}
     public Order(String custlogin, BigDecimal total) {
@@ -66,11 +68,17 @@ public class Order {
         this.closedate = closedate;
     }
 
-    public Boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("orderid = %d, custlogin = %s, total = %s, createdate = %s, closedate = %s, status = %s",
+                getOrderid(), getCustlogin(), getTotal(), getCreatedate(), getClosedate(), getStatus());
     }
 }

@@ -10,4 +10,7 @@ public interface UserAccessService {
     boolean putUser(User user);
     User getUser(String login, String password);
     boolean doesLoginExist(String login);
+    void updateUser(User user);
+
+    User getUserByLogin(String login);
 }
