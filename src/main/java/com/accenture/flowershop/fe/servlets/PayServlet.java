@@ -1,5 +1,6 @@
 package com.accenture.flowershop.fe.servlets;
 
+import com.accenture.flowershop.be.business.BusinessLogicException;
 import com.accenture.flowershop.be.business.OrderBusinessService;
 import com.accenture.flowershop.be.business.OrderBusinessServiceImpl;
 import com.accenture.flowershop.be.business.UserBusinessService;
@@ -45,7 +46,7 @@ public class PayServlet extends HttpServlet {
         try {
             orderBusinessService.payOrder(userdto.getLogin(), orderid);
             resp.sendRedirect("mainpage.jsp");
-        } catch (Exception e) {
+        } catch (BusinessLogicException e) {
             req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
         }

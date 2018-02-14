@@ -58,6 +58,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession();
             if (user.getLogin().equals("admin")) {
                 List<Order> allOrders = new ArrayList<>(); // redo in jsp
+                session.setAttribute("userdto", new UserDTO(user));
                 session.setAttribute("allOrders", allOrders);
                 session.setAttribute("orderBusinessService", orderBusinessService);
                 System.out.println("All orders : ");
@@ -70,6 +71,7 @@ public class LoginServlet extends HttpServlet {
             List<Order> orderlist = new ArrayList<>();//orderBusinessService.getAllCustomersOrders(user.getLogin());
             session.setAttribute("flowerBusinessService", flowerBusinessService);
             session.setAttribute("orderBusinessService", orderBusinessService);
+            session.setAttribute("userBusinessService", userBusinessService);
             session.setAttribute("flowerlist", allFlowers);
             session.setAttribute("cartlist", cartlist);
             session.setAttribute("orderlist", orderlist);

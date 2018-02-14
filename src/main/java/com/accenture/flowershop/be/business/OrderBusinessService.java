@@ -11,7 +11,11 @@ public interface OrderBusinessService {
     List<Order> getAllCustomersOrders(String custlogin);
     List<Order> getAllOrdersSortedByDateAndStatus();
     void createOrUpdateOrder(Order order);
-    void payOrder(String login, Integer orderid) throws Exception;
+    void payOrder(String login, Integer orderid) throws BusinessLogicException;
     void placeOrder(String login, BigDecimal total, List<CartFlower> cartlist);
     void closeOrder(Integer orderid);
+    CartFlower addToCart(String login,
+                         List<CartFlower> cartlist,
+                         String flowerName,
+                         String numberOfFlowers)throws BusinessLogicException;
 }

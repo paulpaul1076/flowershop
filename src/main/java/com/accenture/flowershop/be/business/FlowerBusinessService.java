@@ -3,6 +3,7 @@ package com.accenture.flowershop.be.business;
 import com.accenture.flowershop.be.entity.Flower;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface FlowerBusinessService {
@@ -10,4 +11,5 @@ public interface FlowerBusinessService {
     List<Flower> getFlowersWithPriceBounds(BigDecimal from, BigDecimal to);
     List<Flower> getFlowersByName(String substring);
     void updateFlower(Flower flower);
+    List<BigDecimal> validateBoundInput(String rangeInput) throws BusinessLogicException;
 }

@@ -1,5 +1,6 @@
 package com.accenture.flowershop.fe.servlets;
 
+import com.accenture.flowershop.be.business.BusinessLogicException;
 import com.accenture.flowershop.be.business.FlowerBusinessService;
 import com.accenture.flowershop.be.entity.Flower;
 import com.accenture.flowershop.fe.dto.CartFlower;
@@ -34,44 +35,18 @@ public class SearchInRangeServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String rangeInput = req.getParameter("searchInRange");
-        Pattern RANGE_INPUT_PAT = Pattern.compile("from [1-9]{1}[0-9]*(.[0-9]{1,}){0,1} to [1-9]{1}[0-9]*(.[0-9]{1,}){0,1}");
-        Matcher m = RANGE_INPUT_PAT.matcher(rangeInput);
-        if(!m.matches()) { // handle this error
-            HttpSession session = req.getSession();
-            session.setAttribute("flowerlist", new ArrayList<Flower>());
-            req.setAttribute("error", "You have entered a search query in a bad pattern, should be: \"From a to b\" where a and b are numbers");
-            System.out.println("First error");
+        List<BigDecimal> bounds = null;
+        try{
+            bounds = flowerBusinessService.validateBoundInput(rangeInput);
+        } catch (BusinessLogicException e) {
+            req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
             return;
         }
-
-        Pattern numberPattern = Pattern.compile("[1-9]{1}[0-9]*(.[0-9]{1,}){0,1}");
-        Matcher numberMatcher = numberPattern.matcher(rangeInput);
-        numberMatcher.find();
-        String aStr = numberMatcher.group();
-        numberMatcher.find();
-        String bStr = numberMatcher.group();
-        BigDecimal a = new BigDecimal(aStr).setScale(2);
-        BigDecimal b = new BigDecimal(bStr).setScale(2);
-        if(a.compareTo(b) > 0) { // handle this error
-            HttpSession session = req.getSession();
-            session.setAttribute("flowerlist", new ArrayList<Flower>());
-            req.setAttribute("dontqueryflowers", 1);
-            req.setAttribute("error", "You have entered a search query in which a > b, a must be <= b");
-            req.getRequestDispatcher("mainpage.jsp").forward(req, resp);
-            return;
-        }
-
-        List<Flower> flowerlist = flowerBusinessService.getFlowersWithPriceBounds(a, b);
+        //validation logic end
+        List<Flower> flowerlist = flowerBusinessService.getFlowersWithPriceBounds(bounds.get(0), bounds.get(1));
         HttpSession session = req.getSession();
-        List<CartFlower> cartlist = (List<CartFlower>)session.getAttribute("cartlist");
-        for(Flower flower : flowerlist) {
-            for(CartFlower cartFlower : cartlist) {
-                if(flower.getName().equals(cartFlower.getName())) {
-                    flower.setCount(flower.getCount() - cartFlower.getHowmany());
-                }
-            }
-        }
+
         session.setAttribute("newflowerlist", flowerlist);
         resp.sendRedirect("mainpage.jsp");
     }

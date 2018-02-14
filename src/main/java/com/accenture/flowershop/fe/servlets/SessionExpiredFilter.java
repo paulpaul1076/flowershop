@@ -22,12 +22,19 @@ public class SessionExpiredFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse)servletResponse;
         String pagename = request.getParameter("pagename");
         HttpSession session = request.getSession();
+        String url = ((HttpServletRequest)request).getRequestURL().toString();
+        String queryString = ((HttpServletRequest)request).getQueryString();
+        System.out.println(url);
+        if((session == null || session.getAttribute("userdto") == null) &&
+                !url.equals("http://localhost:8080/") &&
+                !url.equals("http://localhost:8080/loginServlet") &&
+                !url.equals("http://localhost:8080/registerServlet") &&
+                !url.equals("http://localhost:8080/login.jsp") &&
+                !url.equals("http://localhost:8080/register.jsp")) {
 
-        if(session == null || session.getAttribute("userdto") == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("http://localhost:8080/");
         } else {
-            System.out.println("DOPEDOPEDOPE " + pagename);
-            filterChain.doFilter(request, servletResponse);
+            filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 

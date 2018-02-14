@@ -17,8 +17,12 @@ public class XMLConverter {
     private Unmarshaller unmarshaller;
 
     public void convertFromObjectToXML(Object object, String filepath) throws IOException, JAXBException {
+        System.out.println("in convertFromObjectToXML(Object object, String filepath) begin");
         FileOutputStream os = new FileOutputStream(filepath);
+        System.out.println("After FileOutputStream os = new FileOutputStream(filepath);");
+        System.out.println("Marshaller = " + marshaller);
         marshaller.marshal(object, new StreamResult(os));
+        System.out.println("in convertFromObjectToXML(Object object, String filepath) end");
     }
 
     public Object convertFromXMLToObject(String xmlfile) throws IOException, JAXBException {

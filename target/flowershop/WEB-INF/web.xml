@@ -35,7 +35,9 @@
     <servlet-class>com.accenture.flowershop.fe.servlets.RegisterServlet</servlet-class>
     <init-param>
       <param-name>com.accenture.flowershop.be.business.UserBusinessServiceImpl</param-name>
-      <param-value>userBusinessService</param-value>
+      <param-value>userMarshallingService</param-value>
+        <param-name>com.accenture.flowershop.be.xml.UserMarshallingServiceImpl</param-name>
+        <param-value>userBusinessService</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -80,6 +82,8 @@
           <init-param>
             <param-name>com.accenture.flowershop.be.business.FlowerBusinessServiceImpl</param-name>
             <param-value>flowerBusinessService</param-value>
+            <param-name>com.accenture.flowershop.be.business.OrderBusinessServiceImpl</param-name>
+            <param-value>orderBusinessService</param-value>
           </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -118,6 +122,15 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
+  <servlet>
+    <servlet-name>logoutServlet</servlet-name>
+    <servlet-class>com.accenture.flowershop.fe.servlets.LogoutServlet</servlet-class>
+    <init-param>
+      <param-name>com.accenture.flowershop.be.business.FlowerBusinessService</param-name>
+      <param-value>flowerBusinessService</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
 
   <!--<filter>
     <filter-name>sessionExpiredFilter</filter-name>
@@ -126,7 +139,7 @@
 
   <filter-mapping>
     <filter-name>sessionExpiredFilter</filter-name>
-    <url-pattern>*.jsp</url-pattern>
+    <url-pattern>*</url-pattern>
   </filter-mapping>-->
 
   <resource-ref>

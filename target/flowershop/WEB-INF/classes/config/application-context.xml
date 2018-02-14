@@ -36,9 +36,18 @@
     <bean id="order_dao" class="com.accenture.flowershop.be.access.OrderAccessServiceImpl">
     </bean>
 
+    <bean id="userMarshallingService" class="com.accenture.flowershop.be.xml.UserMarshallingServiceImpl">
+        <constructor-arg ref="xmlConverter"/>
+    </bean>
+
+    <bean id="xmlConverter" class="com.accenture.flowershop.be.xml.XMLConverter">
+        <!--<property name="marshaller" ref="castorMarshaller" />-->
+    </bean>
+
+    <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller"/>
 
 
-    <!--<jee:jndi-lookup id="myEmf" jndi-name="persistence/myPersistenceUnit"/>-->
+
 
     <context:annotation-config/>
     <tx:annotation-driven/>

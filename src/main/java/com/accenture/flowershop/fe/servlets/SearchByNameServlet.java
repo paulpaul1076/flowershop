@@ -29,19 +29,10 @@ public class SearchByNameServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Text box value is : " + req.getParameter("searchByName"));
         String substringToSearch = req.getParameter("searchByName");
-        System.out.println("The value of flowerBusinessService is: " + flowerBusinessService);
         List<Flower> flowerlist = flowerBusinessService.getFlowersByName(substringToSearch);
         HttpSession session = req.getSession();
         List<CartFlower> cartlist = (List<CartFlower>)session.getAttribute("cartlist");
-        for(Flower flower : flowerlist) {
-            for(CartFlower cartFlower : cartlist) {
-                if(flower.getName().equals(cartFlower.getName())) {
-                    flower.setCount(flower.getCount() - cartFlower.getHowmany());
-                }
-            }
-        }
         session.setAttribute("newflowerlist", flowerlist);
         resp.sendRedirect("mainpage.jsp");
     }

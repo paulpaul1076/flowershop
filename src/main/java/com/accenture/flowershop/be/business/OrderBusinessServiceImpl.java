@@ -37,7 +37,7 @@ public class OrderBusinessServiceImpl implements OrderBusinessService {
     }
 
     @Transactional
-    public void payOrder(String login, Integer orderid)throws Exception {
+    public void payOrder(String login, Integer orderid)throws BusinessLogicException {
 
         Order order = dao.getOrderById(orderid);
 
@@ -47,7 +47,7 @@ public class OrderBusinessServiceImpl implements OrderBusinessService {
 
         BigDecimal usersMoney = user.getBalance();
         if(usersMoney.compareTo(ordercost) < 0) { // if not enough money then display error message and leave this method
-            throw new Exception("You don't have enough money to pay for this order!");
+            throw new BusinessLogicException("You don't have enough money to pay for this order!");
         }
 
         //else
@@ -71,8 +71,8 @@ public class OrderBusinessServiceImpl implements OrderBusinessService {
         for(CartFlower cartFlower : cartlist) {
             for(Flower flower : flowerlist) {
                 if(cartFlower.getName().equals(flower.getName())) {
-                    flower.setCount(flower.getCount() - cartFlower.getHowmany());
-                    flowerBusinessService.updateFlower(flower);
+                    //flower.setCount(flower.getCount() - cartFlower.getHowmany());
+                    //flowerBusinessService.updateFlower(flower);
                 }
             }
         }
@@ -93,7 +93,56 @@ public class OrderBusinessServiceImpl implements OrderBusinessService {
     }
 
     @Transactional
-    public void addToCart(){
+    public CartFlower addToCart(String login,
+                          List<CartFlower> cartlist,
+                          String flowerName,
+                          String howManyToAddStr)
+            throws BusinessLogicException {
 
+        List<Flower> flowerlist =  flowerBusinessService.getAllFlowers();
+        User user = userBusinessService.getUserByLogin(login);
+        int discount = user.getDiscount();
+        CartFlower newFlower = new CartFlower();
+        BigDecimal totalPriceForFlower = null;
+        int howManyLeftInStock = 0;
+
+        // page stuff
+        // checks if the field with count of flowers is not empty or equal to zero
+        if(howManyToAddStr.isEmpty()) {
+            throw new BusinessLogicException("The \"How many?\" field cannot be empty!");
+        }
+
+        int howManyToAdd = Integer.parseInt(howManyToAddStr);
+
+        if(howManyToAdd <= 0) {
+            throw new BusinessLogicException("You can't order 0 or a negative number of something!");
+        }
+
+        for(Flower f : flowerlist) {
+            if(f.getName().equals(flowerName)) {
+                howManyLeftInStock = f.getCount(); // found flower
+                if(howManyLeftInStock - howManyToAdd < 0) {
+                    throw new BusinessLogicException("You cannot order more than what's left in stock!");
+                }
+                // the flowers are added back to database from cart if the order weren't made
+                f.setCount(howManyLeftInStock - howManyToAdd);
+
+                totalPriceForFlower = f.getPrice()
+                        .multiply(BigDecimal.valueOf(howManyToAdd))
+                        .multiply(BigDecimal.valueOf((100.0 - discount)/100.0)).setScale(2);
+
+                System.out.println("Howmanytoadd = " + howManyToAdd);
+                System.out.println("name = " + f.getName());
+                System.out.println("total = " + totalPriceForFlower);
+
+                newFlower.setHowmany(howManyToAdd);
+                newFlower.setName(f.getName());
+                newFlower.setTotal(totalPriceForFlower);
+
+                break;
+            }
+        }
+        // at this point we have created our new cartflower and set its attributes
+        return newFlower;
     }
 }

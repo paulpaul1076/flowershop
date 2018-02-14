@@ -1,7 +1,9 @@
 package com.accenture.flowershop.fe.servlets;
 
 import com.accenture.flowershop.be.business.UserBusinessService;
+import com.accenture.flowershop.be.business.UserBusinessServiceImpl;
 import com.accenture.flowershop.be.entity.User;
+import com.accenture.flowershop.be.xml.UserMarshallingService;
 import com.accenture.flowershop.fe.dto.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +17,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.File;
 
 @WebServlet("/registerServlet")
 public class RegisterServlet extends HttpServlet {
     @Autowired
     private UserBusinessService userBusinessService;
+    @Autowired
+    private UserMarshallingService userMarshallingService;
     private Logger log = LoggerFactory.getLogger(RegisterServlet.class);
 
     @Override
@@ -41,6 +46,22 @@ public class RegisterServlet extends HttpServlet {
         log.debug(user.toString());
 
         if(success) {
+            String fileName = "C:\\flowershop_users\\" + user.getLogin() + ".xml";
+
+            File file = new File(fileName);
+            while(file.exists()) {
+                fileName += "1";
+                file = new File(fileName);
+            }
+
+            file.getParentFile().mkdirs();
+            file.createNewFile();
+
+            //try {
+                userMarshallingService.marshall(user, fileName);
+            //} catch (Exception e) {
+            //    log.debug("exception message: {}", e.getMessage());
+            //}
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         } else {
             resp.sendRedirect("failedRegistrationError.jsp");

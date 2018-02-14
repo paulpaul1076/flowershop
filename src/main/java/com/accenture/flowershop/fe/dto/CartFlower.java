@@ -31,9 +31,14 @@ public class CartFlower {
         this.total = total;
     }
 
-    @Override
+    /*@Override
     public int hashCode() {
         return total.hashCode() ^ howmany;
+    }*/
+
+    @Override
+    public String toString() {
+        return String.format("CartFlower = {name = %s, howmany = %d, total = %s}", name, howmany, total);
     }
 
     @Override

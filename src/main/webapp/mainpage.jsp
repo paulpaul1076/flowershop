@@ -7,6 +7,8 @@
 <%@ page import="com.accenture.flowershop.be.entity.Order"%>
 <%@ page import="com.accenture.flowershop.be.business.OrderBusinessService"%>
 <%@ page import="com.accenture.flowershop.be.business.FlowerBusinessService"%>
+<%@ page import="com.accenture.flowershop.be.business.UserBusinessService"%>
+<%@ page import="com.accenture.flowershop.be.entity.User"%>
 <%@ page import="com.accenture.flowershop.fe.dto.CartFlower"%>
 
 <!--if session expired redirect-->
@@ -14,13 +16,16 @@
 
 <%
     UserDTO user = (UserDTO)session.getAttribute("userdto");
-    out.println("Hello, " + user.getName() + "<br>");
+    UserBusinessService userBusinessService = (UserBusinessService)session.getAttribute("userBusinessService");
+    User fullUser = (User)userBusinessService.getUserByLogin(user.getLogin());
+    out.println("Hello, " + fullUser.getName() + "<br>");
     out.println("Your info:<br>");
-    out.println("Money: " + user.getBalance() + "<br>");
-    out.println("Discount: " + user.getDiscount() + "<br>");
-    out.println("Address: " + user.getAddress() + "<br>");
-    out.println("Phone: " + user.getPhone() + "<br>");
+    out.println("Money: " + fullUser.getBalance() + "<br>");
+    out.println("Discount: " + fullUser.getDiscount() + "<br>");
+    out.println("Address: " + fullUser.getAddress() + "<br>");
+    out.println("Phone: " + fullUser.getPhone() + "<br>");
     out.println("<br><br>");
+
 
     //update flowerlist
     List<Flower> flowerlist = (List<Flower>)session.getAttribute("flowerlist");
@@ -35,7 +40,7 @@
         session.removeAttribute("newflowerlist");
     }
 
-    List<CartFlower> cartlist = (List<CartFlower>)session.getAttribute("cartlist");
+    /*List<CartFlower> cartlist = (List<CartFlower>)session.getAttribute("cartlist");
 
     for(Flower f : flowerlist) {
         for(CartFlower cartF : cartlist) {
@@ -43,7 +48,7 @@
                 f.setCount(f.getCount() - cartF.getHowmany());
             }
         }
-    }
+    }*/
 
     //update orderlist
     List<Order> orderlist = (List<Order>)session.getAttribute("orderlist");
