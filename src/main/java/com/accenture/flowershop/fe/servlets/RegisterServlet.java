@@ -23,14 +23,12 @@ import java.io.File;
 public class RegisterServlet extends HttpServlet {
     @Autowired
     private UserBusinessService userBusinessService;
-    @Autowired
-    private UserMarshallingService userMarshallingService;
     private Logger log = LoggerFactory.getLogger(RegisterServlet.class);
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,config.getServletContext());
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
     }
 
     @Override
@@ -45,31 +43,10 @@ public class RegisterServlet extends HttpServlet {
 
         log.debug(user.toString());
 
-        if(success) {
-            String fileName = "C:\\flowershop_users\\" + user.getLogin() + ".xml";
-
-            File file = new File(fileName);
-            while(file.exists()) {
-                fileName += "1";
-                file = new File(fileName);
-            }
-
-            file.getParentFile().mkdirs();
-            file.createNewFile();
-
-            //try {
-                userMarshallingService.marshall(user, fileName);
-            //} catch (Exception e) {
-            //    log.debug("exception message: {}", e.getMessage());
-            //}
+        if (success) {
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         } else {
             resp.sendRedirect("failedRegistrationError.jsp");
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
     }
 }

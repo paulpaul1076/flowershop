@@ -1,32 +1,37 @@
 package com.accenture.flowershop.be.xml;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.oxm.castor.CastorMarshaller;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.JAXBElement;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import org.springframework.oxm.Marshaller;
+import org.springframework.oxm.Unmarshaller;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+
 
 public class XMLConverter {
-    private Marshaller marshaller;
-    private Unmarshaller unmarshaller;
+    private Jaxb2Marshaller marshaller;
 
-    public void convertFromObjectToXML(Object object, String filepath) throws IOException, JAXBException {
-        System.out.println("in convertFromObjectToXML(Object object, String filepath) begin");
-        FileOutputStream os = new FileOutputStream(filepath);
-        System.out.println("After FileOutputStream os = new FileOutputStream(filepath);");
-        System.out.println("Marshaller = " + marshaller);
-        marshaller.marshal(object, new StreamResult(os));
-        System.out.println("in convertFromObjectToXML(Object object, String filepath) end");
+    public XMLConverter(Jaxb2Marshaller marshaller) {
+        this.marshaller = marshaller;
     }
 
-    public Object convertFromXMLToObject(String xmlfile) throws IOException, JAXBException {
-        FileInputStream is = new FileInputStream(xmlfile);
-        return unmarshaller.unmarshal(new StreamSource(is));
+    public <T> void convertFromObjectToXML(T object, String filepath){
+        try (FileOutputStream os = new FileOutputStream(filepath)){
+            marshaller.marshal(object, new StreamResult(os));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public <T> T convertFromXMLToObject(String xmlfile) {
+        try(FileInputStream is = new FileInputStream(xmlfile)) {
+            return  (T) marshaller.unmarshal(new StreamSource(is));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

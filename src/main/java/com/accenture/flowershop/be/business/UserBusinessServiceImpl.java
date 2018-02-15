@@ -4,6 +4,7 @@ import com.accenture.flowershop.be.access.UserAccessService;
 import com.accenture.flowershop.be.access.UserAccessServiceImpl;
 import com.accenture.flowershop.be.entity.Flower;
 import com.accenture.flowershop.be.entity.User;
+import com.accenture.flowershop.be.xml.UserMarshallingService;
 import com.accenture.flowershop.fe.dto.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +15,12 @@ import java.util.List;
 public class UserBusinessServiceImpl implements UserBusinessService {
 
     private UserAccessService dao;
-
+    private UserMarshallingService userMarshallingService;
     private static final Logger LOG = LoggerFactory.getLogger(UserBusinessServiceImpl.class);
 
-    public UserBusinessServiceImpl(UserAccessService dao) {
+    public UserBusinessServiceImpl(UserAccessService dao, UserMarshallingService userMarshallingService) {
         this.dao = dao;
+        this.userMarshallingService = userMarshallingService;
     }
 
     @Override
@@ -32,7 +34,10 @@ public class UserBusinessServiceImpl implements UserBusinessService {
 
     @Override
     public boolean register(User user) {
-        return dao.putUser(user);
+        boolean success = dao.putUser(user);
+        String fileName = "C:\\flowershop_users\\" + user.getLogin() + ".xml";
+        userMarshallingService.marshall(user, fileName);
+        return success;
     }
 
     @Override

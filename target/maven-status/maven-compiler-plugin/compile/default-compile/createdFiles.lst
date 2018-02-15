@@ -21,12 +21,14 @@ com\accenture\flowershop\fe\servlets\LogoutServlet.class
 com\accenture\flowershop\fe\servlets\ShowAllFlowersServlet.class
 com\accenture\flowershop\be\xml\UserMarshallingService.class
 com\accenture\flowershop\be\business\OrderBusinessServiceImpl.class
+com\accenture\flowershop\be\business\FlowersStockWebServiceImpl.class
 com\accenture\flowershop\be\access\OrderAccessService.class
 com\accenture\flowershop\fe\servlets\SessionExpiredFilter.class
 com\accenture\flowershop\fe\servlets\SearchByNameServlet.class
 com\accenture\flowershop\be\access\FlowerAccessServiceImpl.class
 com\accenture\flowershop\be\business\BusinessLogicException.class
 com\accenture\flowershop\be\business\OrderBusinessService.class
+com\accenture\flowershop\be\business\FlowersStockWebService.class
 com\accenture\flowershop\fe\dto\CartFlower.class
 com\accenture\flowershop\be\entity\Order.class
 com\accenture\flowershop\fe\servlets\AddToCartServlet.class

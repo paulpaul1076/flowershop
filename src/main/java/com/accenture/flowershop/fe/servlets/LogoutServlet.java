@@ -36,11 +36,13 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = req.getSession();
         // add flower counts back to database from cart
         List<CartFlower> cartlist = (List<CartFlower>)session.getAttribute("cartlist");
-        for(CartFlower cartFlower : cartlist) {
-            //always returns one, since unique
-            Flower flower = flowerBusinessService.getFlowersByName(cartFlower.getName()).get(0);
-            flower.setCount(flower.getCount() + cartFlower.getHowmany());
-            flowerBusinessService.updateFlower(flower);
+        if(cartlist != null) { // if not admin (admin doesn't have a cart and hence why this will result in nullptr exception if performed with admin logged in)
+            for (CartFlower cartFlower : cartlist) {
+                //always returns one, since unique
+                Flower flower = flowerBusinessService.getFlowersByName(cartFlower.getName()).get(0);
+                flower.setCount(flower.getCount() + cartFlower.getHowmany());
+                flowerBusinessService.updateFlower(flower);
+            }
         }
         //end
         Enumeration<String> e = session.getAttributeNames();

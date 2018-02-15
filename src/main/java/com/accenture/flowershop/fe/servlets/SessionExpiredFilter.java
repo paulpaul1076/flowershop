@@ -30,7 +30,9 @@ public class SessionExpiredFilter implements Filter {
                 !url.equals("http://localhost:8080/loginServlet") &&
                 !url.equals("http://localhost:8080/registerServlet") &&
                 !url.equals("http://localhost:8080/login.jsp") &&
-                !url.equals("http://localhost:8080/register.jsp")) {
+                !url.equals("http://localhost:8080/register.jsp") &&
+                !url.equals("http://localhost:8080/ws/flowersStockWebService") &&
+                !url.equals("http://localhost:8080/ws")) {
 
             response.sendRedirect("http://localhost:8080/");
         } else {
