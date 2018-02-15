@@ -1,0 +1,17 @@
+127.0.0.1 - - [15/Feb/2018:19:16:12 +0300] "GET /ws/flowersStockWebService?wsdl HTTP/1.1" 200 2644 http-bio-8080-exec-1 363
+127.0.0.1 - - [15/Feb/2018:19:20:36 +0300] "GET /ws/flowersStockWebService?wsdl HTTP/1.1" 200 2644 http-bio-8080-exec-3 15
+127.0.0.1 - - [15/Feb/2018:19:20:57 +0300] "GET /ws/flowersStockWebService?wsdl HTTP/1.1" 200 2644 http-bio-8080-exec-5 27
+127.0.0.1 - - [15/Feb/2018:19:21:31 +0300] "GET /ws/flowersStockWebService?wsdl HTTP/1.1" 200 2644 http-bio-8080-exec-7 0
+127.0.0.1 - - [15/Feb/2018:19:21:32 +0300] "POST /ws/flowersStockWebService HTTP/1.1" 200 205 http-bio-8080-exec-8 619
+127.0.0.1 - - [15/Feb/2018:19:27:23 +0300] "GET /ws/flowersStockWebService?wsdl HTTP/1.1" 200 2644 http-bio-8080-exec-10 7
+127.0.0.1 - - [15/Feb/2018:19:27:23 +0300] "POST /ws/flowersStockWebService HTTP/1.1" 200 205 http-bio-8080-exec-10 27
+127.0.0.1 - - [15/Feb/2018:19:27:33 +0300] "POST /ws/flowersStockWebService HTTP/1.1" 200 205 http-bio-8080-exec-3 16
+127.0.0.1 - - [15/Feb/2018:19:27:43 +0300] "POST /ws/flowersStockWebService HTTP/1.1" 200 205 http-bio-8080-exec-5 25
+127.0.0.1 - - [15/Feb/2018:19:29:36 +0300] "GET /ws/flowersStockWebService?wsdl HTTP/1.1" 200 2644 http-bio-8080-exec-7 16
+127.0.0.1 - - [15/Feb/2018:19:30:37 +0300] "GET /ws/flowersStockWebService?wsdl HTTP/1.1" 200 2644 http-bio-8080-exec-9 0
+127.0.0.1 - - [15/Feb/2018:19:30:50 +0300] "GET /ws/flowersStockWebService?wsdl HTTP/1.1" 200 2644 http-bio-8080-exec-2 0
+127.0.0.1 - - [15/Feb/2018:19:31:31 +0300] "GET /ws/flowersStockWebService?wsdl HTTP/1.1" 200 2644 http-bio-8080-exec-4 0
+127.0.0.1 - - [15/Feb/2018:19:31:32 +0300] "POST /ws/flowersStockWebService HTTP/1.1" 200 205 http-bio-8080-exec-4 37
+127.0.0.1 - - [15/Feb/2018:19:31:47 +0300] "GET /ws/flowersStockWebService?wsdl HTTP/1.1" 200 2644 http-bio-8080-exec-5 4
+127.0.0.1 - - [15/Feb/2018:19:31:48 +0300] "POST /ws/flowersStockWebService HTTP/1.1" 200 205 http-bio-8080-exec-5 16
+127.0.0.1 - - [15/Feb/2018:19:31:58 +0300] "POST /ws/flowersStockWebService HTTP/1.1" 200 205 http-bio-8080-exec-1 15

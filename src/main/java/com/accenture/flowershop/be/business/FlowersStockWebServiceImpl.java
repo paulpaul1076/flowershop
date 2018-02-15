@@ -24,8 +24,6 @@ public class FlowersStockWebServiceImpl implements FlowersStockWebService {
     @PostConstruct
     public void init(){
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-        System.out.println("Post construct worked!");
-        System.out.println("flowreAccessService = " + flowerAccessService);
     }
 
     @Transactional
