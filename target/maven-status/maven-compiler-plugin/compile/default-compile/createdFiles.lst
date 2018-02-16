@@ -1,3 +1,4 @@
+com\accenture\flowershop\be\rest\UserLoginRestService.class
 com\accenture\flowershop\fe\servlets\LoginServlet.class
 com\accenture\flowershop\fe\servlets\PayServlet.class
 com\accenture\flowershop\fe\servlets\PlaceOrderServlet.class

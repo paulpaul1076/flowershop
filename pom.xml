@@ -141,6 +141,54 @@
       <version>${cxf.version}</version>
     </dependency>
 
+    <!--jersey-->
+    <!--<dependency>-->
+      <!--<groupId>org.glassfish.jersey.containers</groupId>-->
+      <!--<artifactId>jersey-container-servlet</artifactId>-->
+      <!--<version>2.25.1</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>org.glassfish.jersey.containers</groupId>-->
+      <!--<artifactId>jersey-container-servlet-core</artifactId>-->
+      <!--<version>2.25.1</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+        <!--<groupId>org.glassfish.jersey.media</groupId>-->
+        <!--<artifactId>jersey-media-json-jackson</artifactId>-->
+        <!--<version>2.25.1</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>org.glassfish.jersey.ext</groupId>-->
+      <!--<artifactId>jersey-spring3</artifactId>-->
+      <!--<version>2.25.1</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>org.glassfish.jersey.core</groupId>-->
+      <!--<artifactId>jersey-client</artifactId>-->
+      <!--<version>2.25.1</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>org.glassfish.jersey.core</groupId>-->
+      <!--<artifactId>jersey-server</artifactId>-->
+      <!--<version>2.25.1</version>-->
+    <!--</dependency>-->
+
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-server</artifactId>
+      <version>1.8</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>javax.ws.rs-api</artifactId>
+      <version>2.1</version>
+    </dependency>
 
   </dependencies>
   <build>
