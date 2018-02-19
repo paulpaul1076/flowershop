@@ -97,6 +97,12 @@
       <version>1.4.196</version> <!-- ex: 1.2.140 -->
     </dependency>
 
+    <dependency>
+      <groupId>ma.glasnost.orika</groupId>
+      <artifactId>orika-core</artifactId>
+      <version>1.4.6</version>
+    </dependency>
+
     <!--xml-->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -188,6 +194,12 @@
       <groupId>javax.ws.rs</groupId>
       <artifactId>javax.ws.rs-api</artifactId>
       <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-client</artifactId>
+      <version>5.15.3</version>
     </dependency>
 
   </dependencies>

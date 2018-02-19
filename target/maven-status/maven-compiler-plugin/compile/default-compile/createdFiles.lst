@@ -11,6 +11,7 @@ com\accenture\flowershop\be\access\FlowerAccessService.class
 com\accenture\flowershop\be\business\UserBusinessService.class
 com\accenture\flowershop\be\entity\Flower.class
 com\accenture\flowershop\fe\servlets\SearchInRangeServlet.class
+com\accenture\flowershop\be\entity\Discount.class
 com\accenture\flowershop\be\business\UserBusinessServiceImpl.class
 com\accenture\flowershop\fe\servlets\RegisterServlet.class
 com\accenture\flowershop\be\xml\XMLConverter.class
@@ -26,6 +27,7 @@ com\accenture\flowershop\be\business\FlowersStockWebServiceImpl.class
 com\accenture\flowershop\be\access\OrderAccessService.class
 com\accenture\flowershop\fe\servlets\SessionExpiredFilter.class
 com\accenture\flowershop\fe\servlets\SearchByNameServlet.class
+com\accenture\flowershop\be\business\UserBusinessServiceImpl$1.class
 com\accenture\flowershop\be\access\FlowerAccessServiceImpl.class
 com\accenture\flowershop\be\business\BusinessLogicException.class
 com\accenture\flowershop\be\business\OrderBusinessService.class

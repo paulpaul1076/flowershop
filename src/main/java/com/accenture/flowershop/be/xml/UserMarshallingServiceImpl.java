@@ -21,7 +21,7 @@ public class UserMarshallingServiceImpl implements UserMarshallingService {
         this.xmlConverter = xmlConverter;
     }
 
-    public void marshall(User user, String fileName) {
-        xmlConverter.convertFromObjectToXML(user, fileName);
+    public String marshal(User user, String fileName) {
+        return xmlConverter.convertFromObjectToXML(user, fileName);
     }
 }

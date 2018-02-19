@@ -40,6 +40,9 @@ public class User {
     public int getDiscount() {
         return discount;
     }
+    public void setDiscount(Integer discount){
+        this.discount = discount;
+    }
     public boolean isAdmin() {
         return isAdmin;
     }

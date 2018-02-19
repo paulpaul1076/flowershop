@@ -25,14 +25,14 @@ public class SessionExpiredFilter implements Filter {
         String url = ((HttpServletRequest)request).getRequestURL().toString();
         String queryString = ((HttpServletRequest)request).getQueryString();
         System.out.println(url);
-        if((session == null || session.getAttribute("userdto") == null) &&
-                !url.equals("http://localhost:8080/") &&
+        if((session == null || session.getAttribute("userdto") == null) && (url.equals("http://localhost:8080/mainpage.jsp") || url.equals("http://localhost:8080/admin.jsp"))
+                /*!url.equals("http://localhost:8080/") &&
                 !url.equals("http://localhost:8080/loginServlet") &&
                 !url.equals("http://localhost:8080/registerServlet") &&
                 !url.equals("http://localhost:8080/login.jsp") &&
                 !url.equals("http://localhost:8080/register.jsp") &&
                 !url.equals("http://localhost:8080/ws/flowersStockWebService") &&
-                !url.equals("http://localhost:8080/ws")) {
+                !url.equals("http://localhost:8080/ws")*/) {
 
             response.sendRedirect("http://localhost:8080/");
         } else {

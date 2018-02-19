@@ -10,8 +10,6 @@ public class UserDTO {
     private BigDecimal balance;
     private String address;
     private String phone;
-
-
     private String login;
 
     public UserDTO(User user) {

@@ -8,8 +8,6 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.annotation.PostConstruct;
 import javax.jws.WebService;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import java.util.List;
 
 @WebService

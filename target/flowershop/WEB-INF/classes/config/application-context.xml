@@ -66,7 +66,6 @@
         </property>
     </bean>
 
-
     <context:annotation-config/>
     <tx:annotation-driven/>
 
@@ -74,9 +73,10 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
-
-
     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/flowerShopDS"/>
+    <jee:jndi-lookup id="connectionFactory" jndi-name="jms/connectionFactory"/>
+    <jee:jndi-lookup id="esbToMcpRequestQueue" jndi-name="jms/outQueue"/>
+    <jee:jndi-lookup id="esbToMcpRequestQueue1" jndi-name="jms/inQueue"/>
 
     <!--do I need this?????-->
     <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

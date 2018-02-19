@@ -8,6 +8,9 @@ import com.accenture.flowershop.be.entity.Order;
 import com.accenture.flowershop.be.entity.User;
 import com.accenture.flowershop.fe.dto.CartFlower;
 import com.accenture.flowershop.fe.dto.UserDTO;
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +42,18 @@ public class LoginServlet extends HttpServlet {
     @Autowired
     private OrderBusinessService orderBusinessService;
 
+    //----
+    private MapperFacade mapperFacade;
+    //----
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+        //-----
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+        mapperFactory.classMap(User.class, UserDTO.class);
+        mapperFacade = mapperFactory.getMapperFacade();
     }
 
     @Override
@@ -75,7 +86,8 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("flowerlist", allFlowers);
             session.setAttribute("cartlist", cartlist);
             session.setAttribute("orderlist", orderlist);
-            session.setAttribute("userdto", new UserDTO(user));
+            UserDTO userdto = mapperFacade.map(user, UserDTO.class);
+            session.setAttribute("userdto", userdto);
             session.setAttribute("total", new BigDecimal("0").setScale(2));
             session.setAttribute("discount", user.getDiscount());
 
