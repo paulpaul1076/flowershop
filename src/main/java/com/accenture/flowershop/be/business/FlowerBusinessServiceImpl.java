@@ -1,9 +1,15 @@
 package com.accenture.flowershop.be.business;
 
 import com.accenture.flowershop.be.access.FlowerAccessService;
+import com.accenture.flowershop.be.access.FlowerPredicates;
+import com.accenture.flowershop.be.access.FlowerRepository;
 import com.accenture.flowershop.be.entity.Flower;
 import com.accenture.flowershop.be.entity.User;
+import com.querydsl.core.types.Predicate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +23,8 @@ public class FlowerBusinessServiceImpl implements FlowerBusinessService {
         this.dao = dao;
     }
 
+    @Autowired
+    private FlowerRepository flowerRepository;
 
     @Override
     public List<Flower> getAllFlowers() {
@@ -25,12 +33,27 @@ public class FlowerBusinessServiceImpl implements FlowerBusinessService {
 
     @Override
     public List<Flower> getFlowersWithPriceBounds(BigDecimal from, BigDecimal to) {
-        return dao.getFlowersWithPriceBounds(from, to);
+        //return dao.getFlowersWithPriceBounds(from, to);
+        Predicate rangePredicate = FlowerPredicates.isInBounds(from, to);
+        Iterable<Flower> result = flowerRepository.findAll(rangePredicate);
+
+        List<Flower> resultList = new ArrayList<>();
+        result.forEach(resultList::add);
+        return resultList;
     }
 
     @Override
     public List<Flower> getFlowersByName(String substring) {
-        return dao.getFlowersByName(substring);
+        //return dao.getFlowersByName(substring);
+
+        System.out.println("SHOOT, it works");
+
+        Predicate nameSubstrPredicate = FlowerPredicates.hasNameIgnoreCase(substring);
+        Iterable<Flower> result = flowerRepository.findAll(nameSubstrPredicate);
+        //transform iterable into list
+        List<Flower> resultList = new ArrayList<>();
+        result.forEach(resultList::add);
+        return  resultList;
     }
 
     public void updateFlower(Flower flower) {

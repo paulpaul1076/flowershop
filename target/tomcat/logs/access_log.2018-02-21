@@ -1,0 +1,5 @@
+0:0:0:0:0:0:0:1 - - [21/Feb/2018:17:43:35 +0300] "GET / HTTP/1.1" 200 435 http-bio-8080-exec-1 665
+0:0:0:0:0:0:0:1 - - [21/Feb/2018:17:43:41 +0300] "GET /loginServlet?pagename=servlet%2Flogin&login=123&password=123 HTTP/1.1" 302 - http-bio-8080-exec-2 117
+0:0:0:0:0:0:0:1 - - [21/Feb/2018:17:43:42 +0300] "GET /mainpage.jsp HTTP/1.1" 200 5668 http-bio-8080-exec-3 674
+0:0:0:0:0:0:0:1 - - [21/Feb/2018:17:43:45 +0300] "GET /searchByNameServlet?searchByName=t&searchByNameButton=Search HTTP/1.1" 302 - http-bio-8080-exec-4 116
+0:0:0:0:0:0:0:1 - - [21/Feb/2018:17:43:45 +0300] "GET /mainpage.jsp HTTP/1.1" 200 2885 http-bio-8080-exec-5 19

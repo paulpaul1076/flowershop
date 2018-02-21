@@ -69,7 +69,6 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession();
             if (user.getLogin().equals("admin")) {
                 List<Order> allOrders = new ArrayList<>(); // redo in jsp
-                session.setAttribute("userdto", new UserDTO(user));
                 session.setAttribute("allOrders", allOrders);
                 session.setAttribute("orderBusinessService", orderBusinessService);
                 System.out.println("All orders : ");

@@ -1,4 +1,5 @@
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\business\FlowersStockWebService.java
+C:\Users\pavel.orekhov\Documents\GitHub\flowershop\target\generated-sources\java\com\accenture\flowershop\be\entity\QUser.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\access\OrderAccessServiceImpl.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\entity\Order.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\SearchByNameServlet.java
@@ -11,9 +12,12 @@ C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\f
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\xml\UserMarshallingService.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\xml\UserMarshallingServiceImpl.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\xml\XMLConverter.java
+C:\Users\pavel.orekhov\Documents\GitHub\flowershop\target\generated-sources\java\com\accenture\flowershop\be\entity\QOrder.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\access\UserAccessServiceImpl.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\PayServlet.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\CloseServlet.java
+C:\Users\pavel.orekhov\Documents\GitHub\flowershop\target\generated-sources\java\com\accenture\flowershop\be\entity\QFlower.java
+C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\access\FlowerRepository.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\business\OrderBusinessService.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\dto\UserDTO.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\LogoutServlet.java
@@ -21,6 +25,7 @@ C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\f
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\rest\UserLoginRestService.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\business\OrderBusinessServiceImpl.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\PlaceOrderServlet.java
+C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\access\FlowerPredicates.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\access\FlowerAccessServiceImpl.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\be\business\BusinessLogicException.java
 C:\Users\pavel.orekhov\Documents\GitHub\flowershop\src\main\java\com\accenture\flowershop\fe\servlets\SearchInRangeServlet.java

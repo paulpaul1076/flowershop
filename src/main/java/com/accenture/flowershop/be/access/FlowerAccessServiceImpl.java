@@ -1,17 +1,22 @@
 package com.accenture.flowershop.be.access;
 
 import com.accenture.flowershop.be.entity.Flower;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class FlowerAccessServiceImpl implements FlowerAccessService{
     @PersistenceContext
     private EntityManager entityManager;
+
 
     @Override
     public List<Flower> getAllFlowers() {
@@ -30,6 +35,7 @@ public class FlowerAccessServiceImpl implements FlowerAccessService{
         return query.getResultList();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Flower> getFlowersByName(String substring) {
         TypedQuery<Flower> query = entityManager.createNamedQuery("getFlowersByName", Flower.class);

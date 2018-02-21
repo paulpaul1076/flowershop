@@ -29,18 +29,6 @@ public class ShowAllFlowersServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*List<Flower> flowerlist = flowerBusinessService.getAllFlowers();
-        HttpSession session = req.getSession();
-        List<CartFlower> cartlist = (List<CartFlower>)session.getAttribute("cartlist");
-        for(Flower flower : flowerlist) {
-            for(CartFlower cartFlower : cartlist) {
-                if(flower.getName().equals(cartFlower.getName())) {
-                    flower.setCount(flower.getCount() - cartFlower.getHowmany());
-                }
-            }
-        }
-        session.setAttribute("newflowerlist", flowerlist);*/
-        //page loads all flowers by default
         resp.sendRedirect("mainpage.jsp");
     }
 }

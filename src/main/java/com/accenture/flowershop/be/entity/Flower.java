@@ -3,6 +3,7 @@ package com.accenture.flowershop.be.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Embeddable
 @Entity
 @Table(name="Flowers")
 @NamedQueries
